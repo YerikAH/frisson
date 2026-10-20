@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+import OrderForm from './OrderForm.astro';
+---
+
+<section
+  class="personalized section py-20 bg-pale bg-none max-lg:py-20 max-sm:py-12"
+  id="personalizados"
+>
+  <div class="wrap mx-auto w-11/12 max-w-7xl max-xl:w-11/12 max-lg:w-11/12 max-sm:w-11/12">
+    <div class="personalized-heading gap-24 grid grid-cols-2 items-center [&_h2]:mb-0 [&_>_div_>_p:not(.eyebrow)]:text-base [&_>_div_>_p:not(.eyebrow)]:max-w-90 [&_>_div_>_p:not(.eyebrow)]:mb-7 [&_.small-label]:text-xs max-lg:gap-10 max-lg:grid-cols-2 max-lg:[&_h2]:text-4xl max-lg:[&_>_div_>_p:not(.eyebrow)]:text-sm max-sm:gap-7 max-sm:grid-cols-1 max-sm:[&_h2]:text-4xl max-sm:[&_>_div_>_p:not(.eyebrow)]:text-sm max-sm:[&_>_div_>_p:not(.eyebrow)]:max-w-full max-sm:[&_>_div_>_p:not(.eyebrow)]:mb-5 max-sm:[&_.small-label]:text-xs">
+      <div>
+        <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
+          TAN ÚNICO COMO LO QUE SIENTES
+        </p>
+        <h2>
+          Tu emoción,
+          <br />
+          <em>convertida en flores.</em>
+        </h2>
+      </div>
+      <div>
+        <p>
+          Cuéntanos qué deseas transmitir y crearemos una composición floral
+          especialmente para ese momento.
+        </p>
+        <span class="small-label text-xs font-medium tracking-widest leading-relaxed">
+          TÚ PONES LA HISTORIA. NOSOTRAS, LAS FLORES.
+        </span>
+      </div>
+    </div>
+    <details class="personalize-details mt-10 border-t border-solid border-t-line border-b border-solid border-b-line [&_>_summary]:py-6 [&_>_summary]:px-0 [&_>_summary]:flex [&_>_summary]:justify-between [&_>_summary]:items-center [&_>_summary]:text-sm [&_>_summary]:list-none [&_.order-form]:py-9 [&_.order-form]:px-0 [&_.form-grid]:grid-cols-2 [&_.form-grid]:gap-x-12 [&[open]_>_summary_svg]:rotate-45 [&_>_summary_svg]:transition-transform [&_>_summary_svg]:duration-300 supports-[interpolate-size:_allow-keywords]:[interpolate-size:allow-keywords] supports-[interpolate-size:_allow-keywords]:[&::details-content]:[block-size:0] supports-[interpolate-size:_allow-keywords]:[&::details-content]:opacity-0 supports-[interpolate-size:_allow-keywords]:[&::details-content]:overflow-y-clip supports-[interpolate-size:_allow-keywords]:[&::details-content]:transition-[block-size,opacity,content-visibility] supports-[interpolate-size:_allow-keywords]:[&::details-content]:transition-discrete supports-[interpolate-size:_allow-keywords]:[&::details-content]:duration-300 supports-[interpolate-size:_allow-keywords]:[&::details-content]:ease-floral supports-[interpolate-size:_allow-keywords]:[&[open]::details-content]:[block-size:auto] supports-[interpolate-size:_allow-keywords]:[&[open]::details-content]:opacity-100 max-sm:mt-6 max-sm:[&_>_summary]:py-5 max-sm:[&_>_summary]:px-0 max-sm:[&_>_summary]:text-sm max-sm:[&_.form-grid]:gap-x-5 max-sm:[&_.form-grid]:grid-cols-1 max-sm:[&_.order-form]:px-0 max-sm:[&_.order-form]:pt-6 max-sm:[&_.order-form]:pb-2.5 max-xs:[&_.form-grid]:grid-cols-1">
+      <summary>
+        Empezar mi creación <Icon name="plus" size="md" />
+      </summary>
+      <OrderForm />
+    </details>
+  </div>
+</section>

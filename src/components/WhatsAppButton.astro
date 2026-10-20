@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+import { whatsappUrl } from '../lib/orders';
+
+const contactUrl = whatsappUrl(
+  site.whatsapp,
+  'Hola, Frisson. Me gustaría conocer sus creaciones y hacer una consulta.',
+);
+---
+
+<a
+  class="whatsapp-float py-3.5 px-5 border border-solid border-white/15 gap-3 fixed right-7 bottom-[calc(--spacing(6)+env(safe-area-inset-bottom))] z-40 inline-flex items-center justify-center min-h-14 rounded-full bg-whatsapp bg-none text-white text-sm font-medium shadow-whatsapp transition duration-300 ease-floral [&_svg]:shrink-0 [&_svg]:stroke-1.5 [&:hover]:bg-whatsapp-hover [&:hover]:bg-none [&:hover]:-translate-y-1 [&:hover]:shadow-whatsapp-hover [&:focus-visible]:outline-2 [&:focus-visible]:outline-solid [&:focus-visible]:outline-olive [&:focus-visible]:outline-offset-1 [body:has(dialog[open])_&]:opacity-0 [body:has(dialog[open])_&]:translate-y-2 [body:has(dialog[open])_&]:pointer-events-none max-sm:p-0 max-sm:right-5 max-sm:bottom-[calc(--spacing(5)+env(safe-area-inset-bottom))] max-sm:w-14 max-sm:min-h-14 max-sm:[&_span]:hidden"
+  href={contactUrl || '/contacto'}
+  target={contactUrl ? '_blank' : undefined}
+  rel={contactUrl ? 'noopener noreferrer' : undefined}
+  aria-label="Conversar con Frisson por WhatsApp"
+>
+  <Icon name="whatsapp" size="lg" />
+  <span>WhatsApp</span>
+</a>

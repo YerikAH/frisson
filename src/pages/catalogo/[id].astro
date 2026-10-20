@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, priceLabel, type Product } from '../../data/products';
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+interface Props {
+  product: Product;
+}
+const { product } = Astro.props;
+---
+
+<Layout
+  title={`${product.name} — Frisson`}
+  description={product.description}
+  image={`/images/${product.image}.webp`}
+>
+  <section class="product-detail wrap section mx-auto gap-24 w-11/12 max-w-7xl pt-12 pb-25 grid grid-cols-2 items-center max-xl:gap-14 max-xl:w-11/12 max-lg:py-20 max-lg:gap-9 max-lg:w-11/12 max-sm:gap-9 max-sm:w-11/12 max-sm:pt-6 max-sm:pb-15 max-sm:grid-cols-1">
+    <div
+      class:list={[
+        'detail-visual rounded-t-full bg-linear-to-b from-pale to-paper/0 bg-transparent [&_img]:w-full [&_img]:h-165 [&_img]:object-contain max-xl:[&_img]:h-144 max-lg:[&_img]:h-116 max-sm:[&_img]:h-105 max-sm:m-auto max-sm:max-w-90 max-sm:w-full',
+        {
+          'detail-photo overflow-hidden [&_img]:object-cover':
+            !!product.sourceUrl,
+        },
+      ]}
+    >
+      <img
+        src={`/images/${product.image}.webp`}
+        alt={product.alt}
+        width="650"
+        height="800"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="detail-copy [&_.breadcrumb]:border-0 [&_.breadcrumb]:border-solid [&_.breadcrumb]:border-current [&_.breadcrumb]:mb-11 [&_.breadcrumb]:text-muted [&_.breadcrumb]:text-xs [&_h1]:text-7xl [&_h1]:leading-none [&_>_p:not(.eyebrow):not(.detail-price)]:text-sm [&_>_p:not(.eyebrow):not(.detail-price)]:leading-loose [&_>_p:not(.eyebrow):not(.detail-price)]:text-muted [&_dl]:my-8 [&_dl]:mx-0 [&_dl]:border-t [&_dl]:border-solid [&_dl]:border-t-line [&_dl_>_div]:py-3.5 [&_dl_>_div]:px-0 [&_dl_>_div]:gap-4 [&_dl_>_div]:border-b [&_dl_>_div]:border-solid [&_dl_>_div]:border-b-line [&_dl_>_div]:text-xs [&_dl_>_div]:grid [&_dl_>_div]:grid-cols-2 [&_dd]:m-0 [&_dd]:text-muted [&_>_.text-link]:flex [&_>_.text-link]:w-fit [&_>_.text-link]:mt-4 [&_.field-note]:mt-6 [&_.field-note]:text-xs! max-lg:[&_h1]:text-5xl max-lg:[&_.breadcrumb]:mb-7 max-sm:[&_.breadcrumb]:text-xs max-sm:[&_.breadcrumb]:mb-6 max-sm:[&_h1]:text-5xl max-sm:[&_>_p:not(.eyebrow):not(.detail-price)]:text-sm max-sm:[&_.eyebrow]:text-xs max-sm:[&_dl_>_div]:text-xs">
+      <a
+        class="text-link breadcrumb gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
+        href="/catalogo"
+      >
+        ← Volver a la colección
+      </a>
+      <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
+        {product.category}
+      </p>
+      <h1>{product.name}</h1>
+      <p class="detail-price text-xl font-serif">{priceLabel(product.price)}</p>
+      <p>{product.description}</p>
+      <dl>
+        <div>
+          <dt>Flores de inspiración</dt>
+          <dd>{product.flowers}</dd>
+        </div>
+        <div>
+          <dt>Paleta</dt>
+          <dd>{product.colors}</dd>
+        </div>
+        <div>
+          <dt>Tamaño y presentación</dt>
+          <dd>A coordinar según tu creación</dd>
+        </div>
+      </dl>
+      <button
+        class="button button-dark py-3 px-7 border border-solid border-olive gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-olive bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap text-paper [&:hover]:border-ink [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 max-sm:px-6 max-sm:min-h-11 max-sm:text-xs"
+        data-add-product={product.id}
+      >
+        Añadir a mi selección <Icon name="plus" size="sm" />
+      </button>
+      <a
+        class="text-link gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
+        href={`/personalizados?tipo=${encodeURIComponent(product.category === 'En macetero' ? 'En macetero' : product.category === 'En florero' ? 'En florero' : 'Ramo francés')}`}
+      >
+        Quiero darle mi toque <Icon name="arrow" size="sm" />
+      </a>
+      <p class="field-note text-xs text-muted leading-relaxed mt-5 max-sm:text-xs">
+        {product.sourceUrl
+          ? 'Fotografía de una creación de Frisson.'
+          : 'Imagen ilustrativa.'}{' '}
+        Cada arreglo es irrepetible y depende de las flores disponibles. El
+        pedido se confirma al conversar con Frisson.
+      </p>
+      {product.sourceUrl && (
+        <a
+          class="text-link gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
+          href={product.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver en Instagram <Icon name="arrow" size="sm" />
+        </a>
+      )}
+    </div>
+  </section>
+  <section class="wrap section related-products mx-auto w-11/12 max-w-7xl pt-2.5 pb-25 [&_.product-grid]:mx-auto [&_.product-grid]:grid-cols-3 [&_.product-grid]:max-w-250 [&_.product-grid]:mt-8 [&_.product-grid]:mb-0 [&_.product-grid_.product-visual]:h-90 max-xl:w-11/12 max-lg:py-20 max-lg:w-11/12 max-sm:py-15 max-sm:w-11/12 max-sm:[&_h2]:text-4xl max-sm:[&_.product-grid]:grid-cols-2 max-sm:[&_.product-grid_.product-visual]:h-66 max-sm:[&_.product-card:last-child]:hidden 2xl:[&_.product-grid_.featured-product_.product-visual]:h-104 max-xl:[&_.product-grid_.featured-product_.product-visual]:h-80 max-lg:[&_.product-grid_.featured-product_.product-visual]:h-72 max-sm:[&_.product-grid_.featured-product_.product-visual]:h-64 max-xs:[&_.product-grid_.featured-product_.product-visual]:h-64">
+    <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
+      SIGUE EXPLORANDO
+    </p>
+    <h2>
+      Otras formas de <em>emocionar.</em>
+    </h2>
+    <div class="product-grid gap-8 grid grid-cols-4 max-xl:gap-6 max-lg:gap-5 max-sm:grid-cols-2 max-sm:gap-y-9 max-sm:gap-x-5">
+      {products
+        .filter((p) => p.id !== product.id)
+        .slice(0, 4)
+        .map((p, i) => (
+          <ProductCard product={p} index={i} />
+        ))}
+    </div>
+  </section>
+</Layout>

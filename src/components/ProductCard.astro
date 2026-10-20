@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+import { priceLabel, type Product } from '../data/products';
+interface Props {
+  product: Product;
+  index?: number;
+}
+const { product, index = 0 } = Astro.props;
+---
+
+<article
+  class:list={[
+    'product-card text-center min-w-0 pt-14 [&:nth-child(even)]:pt-0 [&:hover_img]:scale-105 [&:hover_img]:-rotate-1 [&.photo-product_.product-visual_img]:p-0 [&.photo-product_.product-visual_img]:object-cover [&:hover_.product-add]:opacity-100 [&:hover_.product-add]:-translate-x-1/2 [&:hover_.product-add]:translate-y-0 [&:focus-within_.product-add]:opacity-100 [&:focus-within_.product-add]:-translate-x-1/2 [&:focus-within_.product-add]:translate-y-0 [&_h3]:text-2xl [&_h3]:leading-tight [&_h3]:mb-2 max-xl:[&_h3]:text-xl max-lg:[&_h3]:text-lg max-sm:pt-9 max-sm:[&:nth-child(even)]:pt-0 max-sm:[&_h3]:text-xl max-sm:[&_h3]:mb-1.5 max-xs:[&_h3]:text-xl',
+    {
+      "featured-product [&_.product-visual]:bg-linear-to-b [&_.product-visual]:from-accent [&_.product-visual]:via-pale [&_.product-visual]:to-paper [&_.product-visual]:bg-transparent [&_.product-visual]:h-100 [&_.product-visual::before]:border [&_.product-visual::before]:border-solid [&_.product-visual::before]:border-white/60 [&_.product-visual::before]:content-[''] [&_.product-visual::before]:absolute [&_.product-visual::before]:top-4 [&_.product-visual::before]:right-4 [&_.product-visual::before]:bottom-4 [&_.product-visual::before]:left-4 [&_.product-visual::before]:rounded-[inherit] [&_.product-visual::before]:pointer-events-none [&_.product-visual::before]:z-1 [&_.product-visual_img]:py-2.5 [&_.product-visual_img]:px-0 [&_.product-add]:opacity-100 [&_.product-add]:-translate-x-1/2 2xl:[&_.product-visual]:h-104 max-xl:[&_.product-visual]:h-80 max-lg:[&_.product-visual]:h-72 max-sm:[&_.product-visual]:h-72 max-sm:[&_.product-add]:py-2 max-sm:[&_.product-add]:px-2.5 max-sm:[&_.product-add]:gap-1 max-sm:[&_.product-add]:w-auto max-sm:[&_.product-add]:text-xs max-xs:[&_.product-visual]:h-63":
+        index === 1,
+      'photo-product': !!product.sourceUrl,
+    },
+  ]}
+  data-category={product.category}
+>
+  <div class="product-visual h-96 relative rounded-full bg-linear-to-b from-pale via-pale/50 to-paper/0 bg-transparent mb-6 [&_>_a]:block [&_>_a]:w-full [&_>_a]:h-full [&_>_a]:rounded-[inherit] [&_>_a]:overflow-hidden [&_img]:py-3 [&_img]:px-1 [&_img]:w-full [&_img]:h-full [&_img]:object-contain [&_img]:transition-transform [&_img]:duration-500 [&_img]:ease-floral 2xl:h-95 max-xl:h-79 max-lg:h-66 max-sm:h-65 max-sm:mb-8 max-sm:rounded-full max-xs:h-56">
+    <a href={`/catalogo/${product.id}`} aria-label={`Ver ${product.name}`}>
+      <img
+        src={`/images/${product.image}.webp`}
+        alt={product.alt}
+        srcset={`/images/${product.image}-400.webp 400w, /images/${product.image}.webp ${product.imageWidth || 900}w`}
+        sizes="(max-width:40rem) 45vw, (max-width:64rem) 23vw, 18.75rem"
+        width="440"
+        height="600"
+        loading="lazy"
+      />
+    </a>
+    <button
+      class="button product-add py-2.5 px-4 border border-solid border-ink gap-1.5 inline-flex justify-center items-center min-h-10 rounded-full bg-paper bg-none text-xs font-medium leading-normal transition duration-200 whitespace-nowrap absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-2 opacity-0 z-2 [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-x-1/2 [&:hover]:-translate-y-0.5 max-xl:px-3 max-xl:text-xs max-lg:px-2 max-lg:gap-1 max-lg:text-xs max-lg:min-h-8 max-sm:p-2 max-sm:gap-0 max-sm:min-h-8 max-sm:[&_span]:sr-only max-sm:opacity-100 max-sm:-translate-x-1/2 max-sm:translate-y-0 max-sm:w-8 max-sm:bottom-4 max-sm:[&_svg]:w-3.5 max-sm:[&_svg]:h-3.5 [@media(hover:_none)]:opacity-100 [@media(hover:_none)]:-translate-x-1/2 [@media(hover:_none)]:translate-y-0 [@media(hover:_none)]:[&:not(.featured-product_.product-add)]:p-2 [@media(hover:_none)]:[&:not(.featured-product_.product-add)]:gap-0 [@media(hover:_none)]:[&:not(.featured-product_.product-add)_span]:sr-only [@media(hover:_none)]:[&:not(.featured-product_.product-add)]:w-9 [@media(hover:_none)]:[&:not(.featured-product_.product-add)]:min-h-9"
+      data-add-product={product.id}
+      aria-label={`Añadir ${product.name} a mi selección`}
+    >
+      <Icon name="plus" size="sm" /> <span>Añadir a mi selección</span>
+    </button>
+    {index === 1 && (
+      <span class="product-tag max-sm:w-full max-sm:max-w-full max-sm:whitespace-normal max-sm:tracking-normal max-sm:leading-tight py-1 px-2.5 absolute -bottom-1 left-1/2 -translate-x-1/2 translate-y-1/2 text-xs tracking-widest bg-olive bg-none text-paper rounded-2xl whitespace-nowrap max-lg:px-1.5 max-lg:text-xs max-sm:py-1 max-sm:px-2 max-sm:text-xs">
+        EL JARDÍN DE FRISSON
+      </span>
+    )}
+  </div>
+  <p class="product-category mx-0 text-xs tracking-widest text-muted mt-0 mb-1.5 max-lg:text-xs max-sm:text-xs max-sm:tracking-wide">
+    {product.category}
+  </p>
+  <h3>
+    <a href={`/catalogo/${product.id}`}>{product.name}</a>
+  </h3>
+  <p class="product-price m-0 text-xs text-muted max-lg:text-xs max-sm:text-xs">
+    {priceLabel(product.price)}
+  </p>
+  {!product.sourceUrl && (
+    <p class="image-note mx-0 mt-2 mb-0 text-muted text-xs">
+      Inspiración ilustrativa
+    </p>
+  )}
+</article>

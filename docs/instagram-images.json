@@ -1,0 +1,37 @@
+{
+  "profile": "https://www.instagram.com/frisson.pee/",
+  "retrievedAt": "2026-10-20",
+  "note": "Fotografías públicas descargadas del perfil a petición del usuario. Solo conversión WebP y reducción de tamaño; sin recreación generativa ni eliminación de fondo. Los recortes de presentación se hacen con CSS. Las imágenes disponibles son vistas públicas de hasta 640 px.",
+  "images": [
+    {
+      "image": "instagram/flores-amarillas",
+      "source": "https://www.instagram.com/frisson.pee/p/DdfRSXekcwA/",
+      "width": 478,
+      "height": 640
+    },
+    {
+      "image": "instagram/lirios-rosas",
+      "source": "https://www.instagram.com/frisson.pee/p/DcgwK9ekayo/",
+      "width": 480,
+      "height": 640
+    },
+    {
+      "image": "instagram/ramo-delicado",
+      "source": "https://www.instagram.com/frisson.pee/p/DcTt_AsRiDL/",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "image": "instagram/lirios-y-gerbera",
+      "source": "https://www.instagram.com/frisson.pee/p/DcSiHGbja65/",
+      "width": 640,
+      "height": 640
+    },
+    {
+      "image": "instagram/lirios-amarillos",
+      "source": "https://www.instagram.com/frisson.pee/p/DcZYyrakYgB/",
+      "width": 480,
+      "height": 640
+    }
+  ]
+}

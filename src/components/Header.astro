@@ -1,0 +1,76 @@
+---
+import Icon from './Icon.astro';
+const path = Astro.url.pathname;
+---
+
+<header class="header wrap mx-auto w-11/12 max-w-7xl h-28 grid grid-cols-[1fr_auto_1fr] relative items-center z-10 max-xl:w-11/12 max-xl:grid-cols-[1fr_auto_1fr] max-lg:w-11/12 max-lg:h-22 max-lg:grid-cols-[1fr_auto_1fr] max-sm:w-11/12 max-sm:h-20 max-sm:grid-cols-[1fr_auto_1fr] max-sm:[&_.menu-toggle]:w-10 max-xs:grid-cols-[1fr_auto_1fr]">
+  <button
+    class="icon-button menu-toggle hidden items-center justify-center w-12 h-12 rounded-full transition-colors duration-200 [&:hover]:bg-pale [&:hover]:bg-none max-lg:inline-flex max-lg:justify-self-start max-sm:[&_svg]:w-6 max-sm:[&_svg]:h-6"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+  >
+    <Icon name="menu" />
+  </button>
+  <nav
+    class="nav-left gap-9 flex items-center text-xs [&_a]:py-3 [&_a]:relative [&_a::after]:content-[''] [&_a::after]:absolute [&_a::after]:left-0 [&_a::after]:right-full [&_a::after]:bottom-2 [&_a::after]:h-0.5 [&_a::after]:bg-ink [&_a::after]:bg-none [&_a::after]:transition-all [&_a::after]:duration-300 [&_a:hover::after]:right-0 [&_a[aria-current]::after]:right-0 [&_a.active::after]:right-0 max-xl:gap-5 max-xl:text-xs max-lg:hidden"
+    aria-label="Navegación principal"
+  >
+    <a href="/#flores">Flores</a>
+    <a
+      href="/catalogo"
+      aria-current={path.startsWith('/catalogo') ? 'page' : undefined}
+    >
+      Catálogo
+    </a>
+    <a href="/#colecciones">Colecciones</a>
+  </nav>
+  <a
+    class="wordmark w-96 max-xl:w-80 max-lg:w-64 max-sm:w-40 gap-7 font-serif text-3xl tracking-wider flex items-center justify-center h-28 bg-hero-tint bg-none [&_span]:h-0.5 [&_span]:bg-ink [&_span]:bg-none [&_span]:w-13 [&_span]:opacity-55 max-xl:gap-5 max-xl:text-2xl max-xl:[&_span]:w-10 max-lg:h-22 max-lg:text-2xl max-lg:[&_span]:w-8 max-sm:gap-0 max-sm:h-20 max-sm:text-2xl max-sm:bg-transparent max-sm:bg-none max-sm:[&_span]:hidden"
+    href="/"
+    aria-label="Frisson, inicio"
+  >
+    <span></span>FRISSON<span></span>
+  </a>
+  <div class="nav-right gap-4 flex items-center text-xs justify-end max-xl:gap-1 max-sm:gap-0 max-sm:[&_.icon-button]:w-10">
+    <a
+      class="history-link py-3 relative mr-6 [&::after]:content-[''] [&::after]:absolute [&::after]:left-0 [&::after]:right-full [&::after]:bottom-2 [&::after]:h-0.5 [&::after]:bg-ink [&::after]:bg-none [&::after]:transition-all [&::after]:duration-300 [&:hover::after]:right-0 max-xl:mr-1.5 max-xl:text-xs max-lg:hidden"
+      href="/#historia"
+    >
+      Nuestra historia
+    </a>
+    <button
+      class="icon-button inline-flex items-center justify-center w-12 h-12 rounded-full transition-colors duration-200 [&:hover]:bg-pale [&:hover]:bg-none max-sm:[&_svg]:w-6 max-sm:[&_svg]:h-6"
+      data-open-search
+      aria-label="Buscar arreglos"
+    >
+      <Icon name="search" />
+    </button>
+    <button
+      class="icon-button bag-button inline-flex items-center justify-center w-12 h-12 rounded-full transition-colors duration-200 relative [&:hover]:bg-pale [&:hover]:bg-none max-sm:[&_svg]:w-6 max-sm:[&_svg]:h-6"
+      data-open-cart
+      aria-label="Abrir mi selección"
+    >
+      <Icon name="bag" />
+      <span
+        class="cart-count absolute top-0 right-0 text-xs bg-olive bg-none text-paper rounded-full w-4 h-4 leading-4 text-center"
+        hidden
+      >
+        0
+      </span>
+    </button>
+  </div>
+</header>
+<nav
+  id="mobile-menu"
+  class="mobile-menu py-6 px-8 absolute left-0 right-0 top-22 bg-paper bg-none z-20 border-b border-solid border-b-line shadow-menu opacity-100 translate-y-0 transition-[opacity,transform,translate,display] transition-discrete duration-300 ease-floral [&_a]:py-2.5 [&_a]:px-0 [&_a]:block [&_a]:text-2xl [&_a]:font-serif [&[hidden]]:opacity-0 [&[hidden]]:-translate-y-3 starting:[&:not([hidden])]:opacity-0 starting:[&:not([hidden])]:-translate-y-3 max-sm:top-20"
+  aria-label="Menú móvil"
+  hidden
+>
+  <a href="/#flores">Flores</a>
+  <a href="/catalogo">Catálogo</a>
+  <a href="/#colecciones">Colecciones</a>
+  <a href="/personalizados">Crea tu arreglo</a>
+  <a href="/#historia">Nuestra historia</a>
+  <a href="/contacto">Contacto y entregas</a>
+</nav>

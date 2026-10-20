@@ -1,0 +1,40 @@
+---
+const steps = [
+  [
+    'Encuentra tu emoción',
+    'Explora la colección o imagina una creación personalizada.',
+  ],
+  ['Hazla tuya', 'Elige los detalles y comparte lo que tienes en mente.'],
+  [
+    'Lo creamos contigo',
+    'Confirmamos disponibilidad e importe antes de preparar tu arreglo.',
+  ],
+  [
+    'Regala un instante',
+    'Coordinamos la entrega para que las flores lleguen a su destino.',
+  ],
+];
+---
+
+<section
+  class="order-steps section wrap mx-auto w-11/12 max-w-7xl pt-9 pb-25 [&_h2]:text-5xl max-xl:w-11/12 max-lg:py-20 max-lg:w-11/12 max-sm:w-11/12 max-sm:pt-5 max-sm:pb-11 max-sm:[&_h2]:text-4xl"
+  id="como-pedir"
+>
+  <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
+    DE UNA EMOCIÓN A UN RECUERDO
+  </p>
+  <h2>
+    Así empieza <em>tu próximo gesto.</em>
+  </h2>
+  <div class="steps-grid gap-10 grid grid-cols-4 mt-12 [&_article]:border-t [&_article]:border-solid [&_article]:border-t-line [&_article]:pt-5 [&_h3]:mx-0 [&_h3]:text-2xl [&_h3]:mt-6 [&_h3]:mb-2.5 [&_p]:text-sm [&_p]:text-muted [&_p]:leading-loose max-xl:gap-6 max-xl:[&_h3]:text-2xl max-lg:gap-5 max-lg:[&_h3]:text-xl max-lg:[&_p]:text-xs max-sm:grid-cols-2 max-sm:gap-y-8 max-sm:gap-x-6 max-sm:mt-8 max-sm:[&_article]:pt-3.5 max-sm:[&_h3]:text-2xl max-sm:[&_h3]:mt-4 max-sm:[&_p]:text-xs">
+    {steps.map(([title, text], i) => (
+      <article>
+        <span class="step-number font-serif text-5xl text-accent leading-tight max-sm:text-4xl">
+          0{i + 1}
+        </span>
+        <h3>{title}</h3>
+        <p>{text}</p>
+      </article>
+    ))}
+  </div>
+</section>

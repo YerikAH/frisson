@@ -1,0 +1,120 @@
+---
+import Icon from './Icon.astro';
+import { products, priceLabel } from '../data/products';
+const varieties = [
+  {
+    name: 'Ramos franceses',
+    image: 'instagram/ramo-delicado',
+    sourceUrl: products.find((p) => p.id === 'ramo-frances')!.sourceUrl,
+    alt: 'Ramo real de Frisson con flores rosadas y lilas, eucalipto y un lazo crema',
+    text: 'Un pequeño jardín entre tus manos. Composiciones libres y delicadas, donde cada flor encuentra su lugar.',
+    type: 'Ramo francés',
+    price: products.find((p) => p.id === 'ramo-frances')!.price,
+  },
+  {
+    name: 'Arreglos en macetero',
+    image: 'arreglo-macetero',
+    alt: 'Propuesta ilustrativa de flores blancas en un macetero de cerámica',
+    text: 'Flores que habitan tus espacios. Una composición orgánica en cerámica, para regalar calma y belleza cotidiana.',
+    type: 'En macetero',
+    price: products.find((p) => p.id === 'arreglo-macetero')!.price,
+  },
+  {
+    name: 'Arreglos en florero',
+    image: 'arreglo-florero',
+    alt: 'Propuesta ilustrativa de flores rosadas y blancas en un florero de cristal',
+    text: 'La ligereza del cristal y la poesía de las flores. Una pieza natural para acompañar tus instantes favoritos.',
+    type: 'En florero',
+    price: products.find((p) => p.id === 'arreglo-florero')!.price,
+  },
+  {
+    name: 'Creaciones personalizadas',
+    image: 'instagram/lirios-y-gerbera',
+    sourceUrl: products.find((p) => p.id === 'a-flor-de-piel')!.sourceUrl,
+    alt: 'Creación de Frisson con lirios blancos, gerbera roja y flores violetas, envuelta en yute',
+    text: 'Cuéntanos una emoción. Elegiremos contigo las flores, los colores y los detalles que la hagan tuya.',
+    type: 'Personalizado',
+    price: null,
+  },
+  {
+    name: 'Colecciones de temporada',
+    image: 'instagram/flores-amarillas',
+    sourceUrl: products.find((p) => p.id === 'sol-entre-flores')!.sourceUrl,
+    alt: 'Creación de Frisson con rosas amarillas, girasol y flores blancas sobre madera',
+    text: 'La belleza de lo que florece hoy. Arreglos que celebran los matices y las texturas de cada temporada.',
+    type: 'De temporada',
+    price: products.find((p) => p.id === 'sol-entre-flores')!.price,
+  },
+];
+---
+
+<section
+  class="varieties section wrap mx-auto gap-5 w-11/12 max-w-7xl pt-11 pb-30 grid grid-cols-2 max-xl:gap-8 max-xl:w-11/12 max-lg:py-20 max-lg:gap-5 max-lg:w-11/12 max-lg:grid-cols-2 max-sm:gap-8 max-sm:w-11/12 max-sm:pt-10 max-sm:pb-15 max-sm:grid-cols-1"
+  id="variedades"
+>
+  <div class="varieties-left [&_h2]:text-5xl [&_h2]:leading-tight [&_h2]:relative [&_h2]:z-2 max-xl:[&_h2]:text-4xl max-lg:[&_h2]:text-4xl max-sm:[&_h2]:text-4xl">
+    <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
+      NATURALEZA CON INTENCIÓN
+    </p>
+    <h2>
+      Una forma de sentir.
+      <br />
+      <em>Mil formas de florecer.</em>
+    </h2>
+    <div
+      class="variety-tabs gap-3.5 flex flex-col items-start mt-11 [&_button]:py-1 [&_button]:px-0 [&_button]:font-serif [&_button]:text-3xl [&_button]:leading-snug [&_button]:text-subtle [&_button]:relative [&_button]:transition-colors [&_button]:duration-300 [&_button::after]:content-[''] [&_button::after]:absolute [&_button::after]:left-0 [&_button::after]:right-full [&_button::after]:h-0.5 [&_button::after]:bottom-0 [&_button::after]:bg-accent [&_button::after]:bg-none [&_button::after]:transition-all [&_button::after]:duration-300 [&_button[aria-selected='true']]:text-ink [&_button[aria-selected='true']::after]:right-0 [&_button:hover]:text-ink max-xl:[&_button]:text-2xl max-lg:gap-3 max-lg:mt-8 max-lg:[&_button]:text-xl max-lg:[&_button]:text-left max-sm:flex max-sm:flex-row max-sm:flex-wrap max-sm:gap-y-2.5 max-sm:gap-x-5 max-sm:mt-6 max-sm:[&_button]:py-1.5 max-sm:[&_button]:text-lg max-sm:[&_button]:min-h-10 max-sm:[&_button]:text-muted"
+      role="tablist"
+      aria-label="Tipos de arreglos"
+      aria-orientation="vertical"
+    >
+      {varieties.map((v, i) => (
+        <button
+          role="tab"
+          id={`variety-${i}`}
+          aria-controls="variety-panel"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+          data-variety={JSON.stringify(v)}
+        >
+          {v.name}
+        </button>
+      ))}
+    </div>
+  </div>
+  <div
+    class="variety-panel relative min-w-0 pt-0 [&_>_img]:relative [&_>_img]:w-full [&_>_img]:max-w-none [&_>_img]:ml-0 [&_>_img]:h-90 [&_>_img]:object-contain [&_>_img]:transition [&_>_img]:duration-300 [&_>_.variety-photo]:mx-auto [&_>_.variety-photo]:w-3/4 [&_>_.variety-photo]:object-cover [&_>_.variety-photo]:rounded-t-full [&_>_.variety-photo]:rounded-b-sm max-xl:[&_>_img]:h-80 max-lg:[&_>_img]:h-72 max-lg:[&_>_img]:w-full max-lg:[&_>_img]:ml-0 max-sm:[&_>_img]:m-0 max-sm:[&_>_img]:h-72 max-sm:[&_>_img]:w-full max-sm:[&_>_.variety-photo]:mx-auto max-sm:[&_>_.variety-photo]:w-4/5 max-sm:[&_>_.variety-photo]:h-80"
+    id="variety-panel"
+    role="tabpanel"
+    tabindex="0"
+    aria-labelledby="variety-0"
+  >
+    <div class="variety-arch absolute right-1/12 -top-4 w-3/4 h-96 rounded-t-full bg-linear-to-b from-pale from-35% to-paper/0 bg-transparent max-lg:h-72 max-sm:w-4/5 max-sm:h-64 max-sm:top-0 max-sm:right-1/10"></div>
+    <img
+      id="variety-image"
+      class="variety-photo"
+      src={`/images/${varieties[0].image}.webp`}
+      alt={varieties[0].alt}
+      width="670"
+      height="510"
+      loading="lazy"
+    />
+    <div class="variety-description gap-6 flex items-end justify-between relative mt-5 [&_>_div]:max-w-72 [&_.small-label]:text-xs [&_p]:my-3.5 [&_p]:mx-0 [&_p]:text-sm [&_p]:leading-loose [&_.button]:px-5 [&_.button]:gap-3.5 [&_.button]:text-xs max-xl:gap-5 max-xl:flex-col max-xl:items-start max-xl:[&_>_div]:max-w-full max-lg:mt-0 max-lg:[&_p]:text-xs max-sm:gap-5 max-sm:flex max-sm:flex-row max-sm:items-end max-sm:mt-2.5 max-sm:[&_.small-label]:text-xs max-sm:[&_p]:text-xs max-sm:[&_p]:leading-relaxed max-sm:[&_.subtle]:text-xs max-sm:[&_>_div]:max-w-3/5 max-sm:[&_.button]:py-2 max-sm:[&_.button]:px-3 max-sm:[&_.button]:gap-2.5 max-sm:[&_.button]:text-xs max-sm:[&_.button]:min-h-9 max-sm:[&_.button]:mb-1.5 max-sm:[&_.button_svg]:w-3">
+      <div>
+        <span class="small-label text-xs font-medium tracking-widest leading-relaxed">
+          CREADO ESPECIALMENTE PARA TI
+        </span>
+        <p id="variety-text">{varieties[0].text}</p>
+        <span class="subtle text-muted text-sm" id="variety-price">
+          {priceLabel(varieties[0].price)} · Disponibilidad a coordinar
+        </span>
+      </div>
+      <a
+        class="button py-3 px-7 border border-solid border-ink gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-paper bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 max-sm:px-6 max-sm:min-h-11 max-sm:text-xs"
+        id="variety-link"
+        href="/personalizados?tipo=Ramo%20franc%C3%A9s"
+      >
+        Elegir mis flores <Icon name="arrow" size="sm" />
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+{
+  "method": "Herramienta integrada ImageGen; sin API ni CLI externo",
+  "usage": "Representaciones ilustrativas pendientes de aprobación comercial. La boutique es conceptual; las personas no representan a las fundadoras.",
+  "assets": [
+    {
+      "file": "public/images/hero-frisson.webp",
+      "transparent_background": true,
+      "prompt": "Premium French florist editorial campaign, photorealistic natural fresh flowers, refined organic asymmetrical arrangement, soft diffused studio daylight, realistic delicate petals, dusty blush pink ivory cream and muted natural olive greens, sophisticated warm palette, no text no logo no watermark, no plastic flowers, no oversaturated color. Asset: tall website hero cutout. A large abundant but airy hand-tied bouquet of dusty pink garden roses, white lisianthus, cream buds and light green foliage, long natural stems clearly visible bound with a flowing dusty pink satin ribbon. Entire bouquet and ribbon fit fully in frame, front view, tall portrait composition. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/ramo-frances-delicado.webp",
+      "transparent_background": true,
+      "prompt": "Premium French florist editorial campaign, photorealistic natural fresh flowers, refined organic asymmetrical arrangement, soft diffused studio daylight, realistic delicate petals, dusty blush pink ivory cream and muted natural olive greens, sophisticated warm palette, no text no logo no watermark, no plastic flowers, no oversaturated color. Asset: catalog product cutout. A small delicate French bouquet, cream and blush roses with airy foliage, subtly wrapped in light natural kraft paper, tied with ivory ribbon, full bouquet and stems visible, vertical composition. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/ramo-jardin-romantico.webp",
+      "transparent_background": true,
+      "prompt": "Premium French florist editorial campaign, photorealistic natural fresh flowers, refined organic asymmetrical arrangement, soft diffused studio daylight, realistic delicate petals, dusty blush pink ivory cream and muted natural olive greens, sophisticated warm palette, no text no logo no watermark, no plastic flowers, no oversaturated color. Asset: featured catalog product cutout. A spectacular artistic French garden bouquet with large blush peonies, apricot garden roses, ivory lisianthus, delicate white flowers, eucalyptus, refined light blush paper wrap and ribbon. Abundant but sophisticated, full object visible vertically. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/arreglo-macetero.webp",
+      "transparent_background": true,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Catalog product cutout: white roses, ivory ranunculus, cream flowers and foliage in minimalist ivory ceramic pedestal pot. Full arrangement fits vertically. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/arreglo-florero.webp",
+      "transparent_background": true,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Catalog cutout: airy pink sweet peas, blush roses, white cosmos and green branches naturally arranged in a clear ribbed glass vase with water. Full vase and flowers visible vertically. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/detalle-floral.webp",
+      "transparent_background": true,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Small editorial cutout: small hand tied white tulip and white lisianthus bouquet, light kraft paper and twine, full bouquet visible. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/ramo-editorial-mano.webp",
+      "transparent_background": true,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Wide website cutout: large French bouquet of white peonies, blush roses, pink sweet peas and foliage with stems visible, held horizontally by one natural hand entering from right edge. Bouquet center and left, wrist exits right. Genuinely transparent background."
+    },
+    {
+      "file": "public/images/historia-frisson.webp",
+      "transparent_background": false,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Portrait editorial photograph: close crop anonymous florist hands crafting arrangement on aged walnut worktable, blush and white roses, olive toned cozy workshop behind, linen apron partly visible, no face. Cinematic golden window light."
+    },
+    {
+      "file": "public/images/inspiracion-boutique.webp",
+      "transparent_background": false,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Portrait interior photo of conceptual future French flower boutique: deep olive walls, antique dark walnut counter, warm brass lighting, fresh flowers in glass vases, cozy safe atmosphere. Empty, no signage or text."
+    },
+    {
+      "file": "public/images/comunidad-flores.webp",
+      "transparent_background": false,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Vertical editorial photograph, close overhead diagonal view of lush French bouquet: apricot roses, white cosmos, tiny blush flowers, green leaves on ivory linen. Sunlit petals."
+    },
+    {
+      "file": "public/images/comunidad-proceso.webp",
+      "transparent_background": false,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Vertical editorial photo: anonymous hands tying dusty pink silk ribbon around small white and blush bouquet on dark wood florist workbench, linen and shears, warm light. No face."
+    },
+    {
+      "file": "public/images/comunidad-detalle.webp",
+      "transparent_background": false,
+      "prompt": "Photorealistic premium French florist campaign, fresh natural flowers, soft studio daylight, delicate realistic petals, dusty blush ivory cream muted olive palette, organic asymmetrical composition. No text, logo or watermark. Vertical macro editorial photo of blush rose petals, ivory lisianthus, olive eucalyptus. Shallow focus, soft cream background."
+    }
+  ]
+}

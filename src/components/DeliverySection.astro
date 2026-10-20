@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+---
+
+<section
+  class="delivery-section wrap mx-auto py-14 px-15 gap-15 w-11/12 max-w-7xl bg-olive bg-none text-paper rounded-xs grid grid-cols-2 items-center max-xl:py-11 max-xl:px-9 max-xl:gap-9 max-xl:w-11/12 max-lg:py-9 max-lg:px-6 max-lg:gap-6 max-lg:w-11/12 max-lg:grid-cols-2 max-sm:py-8 max-sm:px-6 max-sm:w-11/12 max-sm:block"
+  id="delivery"
+>
+  <div class="delivery-title gap-6 flex items-center [&_h2]:m-0 [&_h2]:text-4xl [&_.eyebrow]:text-line [&_.eyebrow]:text-xs [&_.eyebrow]:tracking-widest [&_.eyebrow]:mb-3.5 max-xl:gap-4 max-xl:[&_h2]:text-3xl max-lg:block max-lg:[&_h2]:text-4xl max-sm:gap-4 max-sm:flex max-sm:[&_.eyebrow]:text-xs max-sm:[&_.eyebrow]:tracking-wider max-sm:[&_.eyebrow]:mb-2 max-sm:[&_h2]:text-3xl">
+    <span class="delivery-icon border border-solid border-paper/30 rounded-full w-16 h-16 flex items-center justify-center shrink-0 max-xl:w-12 max-xl:h-12 max-lg:mb-5 max-sm:m-0 max-sm:w-11 max-sm:h-11 max-sm:[&_svg]:w-6">
+      <Icon name="pin" size="lg" />
+    </span>
+    <div>
+      <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
+        FLORES QUE ENCUENTRAN SU CAMINO
+      </p>
+      <h2>
+        Hasta donde <em>estás.</em>
+      </h2>
+    </div>
+  </div>
+  <div class="delivery-content [&_>_p]:text-sm [&_>_p]:text-ivory [&_>_p]:leading-relaxed [&_label]:text-xs [&_select]:border-white/30 [&_select]:bg-transparent [&_select]:bg-none [&_select]:text-paper [&_select]:mt-1 [&_select]:min-h-11 [&_option]:text-ink [&_option]:bg-paper [&_option]:bg-none [&_.field-note]:mx-0 [&_.field-note]:text-line [&_.field-note]:text-xs [&_.field-note]:mt-3.5 [&_.field-note]:mb-0 max-lg:[&_>_p]:text-xs max-sm:mt-6 max-sm:[&_>_p]:text-xs max-sm:[&_.field-note]:text-xs">
+    <p>
+      Entregas coordinadas en Huancayo, El Tambo, Chilca y San Carlos. Cada
+      destino forma parte de la historia.
+    </p>
+    <label>
+      Consulta tu zona
+      <select id="delivery-zone">
+        <option value="">Selecciona una zona de entrega</option>
+        {site.zones.map((zone) => (
+          <option>{zone}</option>
+        ))}
+      </select>
+    </label>
+    <p
+      id="delivery-result"
+      class="field-note text-xs text-muted leading-relaxed mt-5 max-sm:text-xs"
+      aria-live="polite"
+    >
+      {site.deliveryNote}
+    </p>
+  </div>
+</section>

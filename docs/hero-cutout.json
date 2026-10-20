@@ -1,0 +1,15 @@
+{
+  "tool": "ImageGen, herramienta integrada (edición)",
+  "useCase": "background-extraction",
+  "source": "public/images/instagram/lirios-rosas.webp",
+  "sourceUrl": "https://www.instagram.com/frisson.pee/p/DcgwK9ekayo/",
+  "output": "public/images/hero-frisson-sin-fondo.png",
+  "responsiveVariant": "public/images/hero-frisson-sin-fondo-450.png",
+  "size": {
+    "width": 900,
+    "height": 1200
+  },
+  "transparentBackground": true,
+  "note": "Recorte editado para el hero. La fotografía original permanece intacta en la colección y la galería. El PNG conserva el canal alfa; se retiraron el fondo y la mano de soporte.",
+  "prompt": "Use case: background-extraction. Edit target: the attached photograph of the Frisson bouquet. Create a clean photographic cutout with a genuinely transparent alpha background, suitable for a florist website hero. Remove ONLY the brown wall, botanical shadows on the wall, and the supporting human hand/forearm at the bottom. Retain the entire existing bouquet: all pink lilies and buds, the red rose, pink carnation, tiny white flowers, green leaves, natural jute mesh, translucent wrapping, twine and hanging Frisson card. Keep the original arrangement, proportions, colors, lighting, textures, petal shapes and visible card lettering as faithfully as possible. Do not invent additional flowers or redesign the product. Remove the hand cleanly, leaving a natural tied bouquet silhouette and its hanging card. Isolate the bouquet on full transparency, not white, not a checkerboard, no wall or floor or backdrop, no cast shadow, no frame, no vignette. Portrait composition showing the whole bouquet with a small transparent margin on every side; nothing cropped. Output a transparent PNG cutout."
+}

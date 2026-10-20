@@ -1,0 +1,190 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: Bodoni;
+  src: url('/fonts/bodoni-regular.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Bodoni;
+  src: url('/fonts/bodoni-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: DM Sans;
+  src: url('/fonts/dm-sans.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* La escala de tamaños y espaciados procede del tema nativo de Tailwind. */
+@theme {
+  --color-paper: #f4e8df;
+  --color-ink: #3f3429;
+  --color-muted: #6e6258;
+  --color-subtle: #938174;
+  --color-accent: #c5a180;
+  --color-pale: #ead8c8;
+  --color-hero-tint: #e7ceba;
+  --color-olive: #3e4936;
+  --color-line: #d4bfad;
+  --color-highlight: #e4d5b7;
+  --color-footer: #3b3025;
+  --color-ivory: #f5f1e9;
+  --color-footer-muted: #e6ddd3;
+  --color-whatsapp: #35543d;
+  --color-whatsapp-hover: #294530;
+  --font-serif: Bodoni, Georgia, serif;
+  --font-sans: 'DM Sans', Arial, sans-serif;
+  --breakpoint-xs: 24rem;
+  --ease-floral: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-soft: 0 0.25rem 1.25rem --alpha(var(--color-ink) / 5%);
+  --shadow-menu: 0 1.25rem 2rem --alpha(var(--color-ink) / 5%);
+  --shadow-dialog: 0 0.5rem 4rem --alpha(var(--color-ink) / 15%);
+  --shadow-toast: 0 0.25rem 1.5rem --alpha(var(--color-ink) / 15%);
+  --shadow-whatsapp: 0 0.5rem 1.5rem --alpha(var(--color-whatsapp) / 15%);
+  --shadow-whatsapp-hover: 0 0.5rem 2rem --alpha(var(--color-whatsapp) / 25%);
+  --drop-shadow-bouquet: 0 0.5rem 0.75rem --alpha(var(--color-ink) / 5%);
+  --text-shadow-photo: 0 0.125rem 0.25rem --alpha(var(--color-ink) / 80%);
+}
+
+@layer base {
+  html {
+    @apply scroll-pt-8 scroll-smooth;
+  }
+  body {
+    @apply m-0 bg-paper font-sans text-base leading-relaxed text-ink antialiased;
+  }
+  body:has(dialog[open]) {
+    @apply overflow-hidden;
+  }
+  p {
+    @apply mt-0 mb-4;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply mt-0 font-serif font-medium tracking-tight;
+  }
+  h1 {
+    @apply mb-6 leading-none;
+  }
+  h2 {
+    @apply mb-6 text-4xl leading-tight lg:text-5xl;
+  }
+  h3 {
+    @apply mb-4 leading-tight;
+  }
+  em {
+    @apply font-normal;
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary {
+    @apply touch-manipulation outline-offset-4 [-webkit-tap-highlight-color:transparent];
+  }
+  a {
+    @apply text-inherit no-underline;
+  }
+  button,
+  summary {
+    @apply cursor-pointer;
+  }
+  button {
+    @apply border-0 bg-transparent px-1.5 py-0.5 text-inherit [font:inherit];
+  }
+  img {
+    @apply block h-auto max-w-full;
+  }
+  button svg,
+  a svg {
+    @apply shrink-0;
+  }
+  :is(a, button, input, select, textarea, summary):focus-visible {
+    @apply outline-2 outline-olive outline-solid;
+  }
+  ::selection {
+    @apply bg-highlight text-ink;
+  }
+  [hidden] {
+    @apply hidden!;
+  }
+  summary::-webkit-details-marker {
+    @apply hidden;
+  }
+  fieldset {
+    @apply mx-0 mt-0 mb-9 min-w-0 border-0 p-0;
+  }
+  legend {
+    @apply mb-7 w-full border-b border-line px-0 pt-0 pb-5 font-serif text-2xl leading-snug max-sm:mb-5;
+  }
+  legend span {
+    @apply mr-3 font-sans text-xs text-muted;
+  }
+  label {
+    @apply block text-xs;
+  }
+  input:not([type='checkbox']),
+  select,
+  textarea {
+    @apply block min-h-12 w-full min-w-0 rounded-none border-0 border-b border-line bg-transparent px-0 py-3 font-sans text-sm leading-relaxed max-sm:text-base;
+  }
+  select {
+    @apply pr-5;
+  }
+  textarea {
+    @apply min-h-20 resize-y;
+  }
+  input[type='checkbox'] {
+    @apply m-1 accent-olive;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-xs text-subtle;
+  }
+  pre {
+    @apply my-4;
+  }
+  dialog {
+    @apply m-auto max-h-[90dvh] max-w-11/12 [transform:var(--dialog-closed-transform)] rounded-md border border-line bg-paper p-9 text-ink opacity-0 shadow-dialog transition-[opacity,transform,display,overlay] transition-discrete duration-300 ease-floral [--dialog-closed-transform:translateY(1rem)_scale(0.95)] max-sm:p-6;
+  }
+  dialog[open] {
+    @apply transform-none opacity-100;
+  }
+  dialog::backdrop {
+    @apply bg-ink/0 backdrop-blur-none transition-[background-color,backdrop-filter,display,overlay] transition-discrete duration-300 ease-floral;
+  }
+  dialog[open]::backdrop {
+    @apply bg-ink/40 backdrop-blur-xs;
+  }
+  @starting-style {
+    dialog[open] {
+      @apply [transform:var(--dialog-closed-transform)] opacity-0;
+    }
+    dialog[open]::backdrop {
+      @apply bg-ink/0 backdrop-blur-none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      @apply scroll-auto;
+    }
+    *,
+    *::before,
+    *::after,
+    dialog::backdrop,
+    details::details-content {
+      @apply animate-none! transition-none!;
+    }
+  }
+}

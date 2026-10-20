@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  icon: string;
+  title: string;
+  text: string;
+  class?: string;
+}
+const { icon, title, text, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    'feature-card px-4 border border-solid border-subtle rounded-xl pt-4 pb-3.5 bg-paper/60 bg-none backdrop-blur-xs [&_h3]:font-sans [&_h3]:text-xs [&_h3]:font-semibold [&_h3]:tracking-normal [&_h3]:mb-1 [&_p]:m-0 [&_p]:text-xs [&_p]:leading-relaxed [&_p]:text-muted max-xl:p-3 max-xl:[&_p]:text-xs max-lg:[&_h3]:text-xs max-lg:[&_p]:text-xs max-sm:py-3.5 max-sm:px-3 max-sm:rounded-xl max-sm:min-h-31 max-sm:backdrop-blur-none max-sm:bg-paper max-sm:bg-none max-sm:[&_h3]:text-xs max-sm:[&_p]:text-xs max-sm:[&_p]:leading-relaxed max-xs:min-h-29',
+    className,
+  ]}
+>
+  <span class="feature-icon flex w-8 h-8 items-center justify-center rounded-full bg-ink bg-none text-paper mb-3.5 max-lg:w-6 max-lg:h-6 max-lg:mb-2.5 max-sm:mb-2 max-sm:w-6 max-sm:h-6">
+    <Icon name={icon} size="sm" />
+  </span>
+  <h3>{title}</h3>
+  <p>{text}</p>
+</div>

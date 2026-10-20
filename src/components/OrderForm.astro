@@ -1,0 +1,201 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+---
+
+<form class="order-form" data-order-form>
+  <p class="form-intro text-xs leading-relaxed text-muted mb-8">
+    Los campos con * nos ayudan a preparar tu solicitud. La disponibilidad, el
+    precio y la entrega se coordinan contigo.
+  </p>
+  <fieldset>
+    <legend>
+      <span>01</span> La emoción que quieres regalar
+    </legend>
+    <div class="form-grid grid grid-cols-2 gap-x-8 gap-y-6 max-lg:gap-x-5 max-sm:gap-y-5 max-sm:gap-x-5 max-sm:grid-cols-1 max-xs:grid-cols-1">
+      <label>
+        Tu nombre *
+        <input
+          name="nombre"
+          autocomplete="name"
+          required
+          maxlength="100"
+          placeholder="¿Cómo te llamas?"
+        />
+      </label>
+      <label>
+        Tipo de arreglo *
+        <select name="tipo" required>
+          <option value="">Elige una composición</option>
+          <option>Ramo francés</option>
+          <option>En macetero</option>
+          <option>En florero</option>
+          <option>De temporada</option>
+          <option>Personalizado</option>
+        </select>
+      </label>
+      <label>
+        Ocasión
+        <select name="ocasion">
+          <option>Porque sí</option>
+          <option>Cumpleaños</option>
+          <option>Aniversario</option>
+          <option>Agradecimiento</option>
+          <option>Celebración</option>
+          <option>Para acompañar</option>
+          <option>Otra ocasión</option>
+        </select>
+      </label>
+      <label>
+        Presupuesto aproximado (S/)
+        <input
+          name="presupuesto"
+          type="number"
+          min="1"
+          max="100000"
+          placeholder="Lo que tienes en mente"
+        />
+      </label>
+      <label>
+        Flores preferidas
+        <input
+          name="flores"
+          maxlength="200"
+          placeholder="Rosas, tulipanes… o sorpréndanme"
+        />
+      </label>
+      <label>
+        Colores
+        <input
+          name="colores"
+          maxlength="150"
+          placeholder="Marfil, rosa suave, tonos tierra…"
+        />
+      </label>
+      <label>
+        Tamaño
+        <select name="tamano">
+          <option>Aconsejadme</option>
+          <option>Pequeño y delicado</option>
+          <option>Mediano</option>
+          <option>Abundante</option>
+        </select>
+      </label>
+      <label>
+        Forma o estilo
+        <select name="estilo">
+          <option>Libre, de inspiración francesa</option>
+          <option>Romántico y delicado</option>
+          <option>Silvestre y orgánico</option>
+          <option>Minimalista</option>
+        </select>
+      </label>
+      <label class="full-width col-span-full max-xs:col-auto max-sm:col-auto">
+        Presentación o envoltorio
+        <select name="presentacion">
+          <option>Según la composición</option>
+          <option>Papel natural</option>
+          <option>Envoltorio delicado con cinta</option>
+          <option>Recipiente cerámico</option>
+          <option>Florero de cristal</option>
+        </select>
+      </label>
+      <label class="full-width col-span-full max-xs:col-auto max-sm:col-auto">
+        Mensaje para la tarjeta
+        <textarea
+          name="tarjeta"
+          rows="2"
+          maxlength="500"
+          placeholder="Hay palabras que merecen ir entre flores…"
+        ></textarea>
+      </label>
+    </div>
+    <p class="field-note text-xs text-muted leading-relaxed mt-5 max-sm:text-xs">
+      Creamos bajo nuestro estilo francés. Las flores específicas dependen de su
+      disponibilidad.
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>
+      <span>02</span> El momento y el lugar
+    </legend>
+    <div class="form-grid grid grid-cols-2 gap-x-8 gap-y-6 max-lg:gap-x-5 max-sm:gap-y-5 max-sm:gap-x-5 max-sm:grid-cols-1 max-xs:grid-cols-1">
+      <label>
+        Fecha deseada *<input name="fecha" type="date" required />
+      </label>
+      <label>
+        Horario deseado *<input name="horario" type="time" required />
+      </label>
+      <label>
+        Zona de entrega *
+        <select name="zona" required>
+          <option value="">Selecciona una zona</option>
+          {site.zones.map((zone) => (
+            <option>{zone}</option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Nombre de quien recibe *
+        <input
+          name="destinatario"
+          required
+          maxlength="100"
+          placeholder="¿Para quién son las flores?"
+        />
+      </label>
+      <label class="full-width col-span-full max-xs:col-auto max-sm:col-auto">
+        Dirección de entrega *
+        <input
+          name="direccion"
+          autocomplete="street-address"
+          required
+          maxlength="250"
+          placeholder="Calle, número y referencia"
+        />
+      </label>
+      <label class="full-width col-span-full max-xs:col-auto max-sm:col-auto">
+        Indicaciones adicionales
+        <textarea
+          name="observaciones"
+          rows="2"
+          maxlength="1000"
+          placeholder="Cuéntanos cualquier detalle que debamos tener en cuenta"
+        ></textarea>
+      </label>
+    </div>
+    <p
+      class="delivery-estimate field-note text-xs text-muted leading-relaxed mt-5 max-sm:text-xs"
+      aria-live="polite"
+    >
+      {site.deliveryNote}
+    </p>
+  </fieldset>
+  <label class="consent gap-3 flex items-start text-xs text-muted [&_input]:mt-1 [&_input]:accent-olive [&_input]:w-4 [&_input]:h-4 [&_input]:shrink-0 [&_a]:underline [&_a]:underline-offset-1 max-sm:text-xs">
+    <input name="consentimiento" type="checkbox" required />{' '}
+    <span>
+      He revisado la <a href="/privacidad">información de privacidad</a> y deseo
+      preparar una solicitud con estos datos. *
+    </span>
+  </label>
+  <div class="form-actions gap-5 flex items-center flex-wrap mt-7 [&_>_.text-link]:text-xs max-sm:gap-5 max-sm:[&_>_.button]:text-xs max-sm:[&_>_.text-link]:text-xs">
+    <button
+      type="submit"
+      class="button button-dark py-3 px-7 border border-solid border-olive gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-olive bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap text-paper [&:hover]:border-ink [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 max-sm:px-6 max-sm:min-h-11 max-sm:text-xs"
+    >
+      Revisar mi solicitud <Icon name="arrow" size="sm" />
+    </button>
+    <button
+      type="button"
+      class="text-link gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
+      data-clear-draft
+    >
+      Borrar mis datos
+    </button>
+  </div>
+  <noscript>
+    <p>
+      Activa JavaScript para preparar tu solicitud y el mensaje de WhatsApp.
+    </p>
+  </noscript>
+</form>

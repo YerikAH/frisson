@@ -1,23 +1,82 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Dialogs from '../components/Dialogs.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { site } from '../config/site';
+import '../styles/global.css';
+import themeSource from '../styles/global.css?raw';
+const themeColor = themeSource.match(/--color-paper:\s*([^;]+);/)?.[1]?.trim();
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+}
+const {
+  title = 'Frisson — Flores que te hacen sentir',
+  description = site.description,
+  image = '/images/instagram/lirios-rosas.webp',
+  noindex = false,
+} = Astro.props;
+const canonical = site.url
+  ? new URL(Astro.url.pathname, site.url).href
+  : undefined;
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href="/fonts/bodoni-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/dm-sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta name="theme-color" content={themeColor} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content="Frisson" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta
+      property="og:image"
+      content={site.url ? new URL(image, site.url).href : image}
+    />
+    <meta property="og:image:alt" content="El universo floral de Frisson" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {noindex && <meta name="robots" content="noindex,follow" />}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body id="inicio">
+    <a
+      href="#contenido"
+      class="skip-link py-3 px-5 absolute left-4 -top-24 z-100 bg-olive bg-none text-white [&:focus]:top-3"
+    >
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="contenido">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+    <Dialogs />
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>
