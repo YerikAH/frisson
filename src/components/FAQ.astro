@@ -1,50 +1,18 @@
 ---
 import Icon from './Icon.astro';
-const questions = [
-  [
-    '¿Todos los arreglos son diferentes?',
-    'Sí. Cada composición se crea de forma artesanal y no se repite de manera idéntica. Las imágenes te orientan en el estilo; tu arreglo tendrá su propia personalidad.',
-  ],
-  [
-    '¿Puedo solicitar flores o colores específicos?',
-    'Sí, puedes contarnos tus preferencias. La elección final de las flores se coordina según disponibilidad, manteniendo el estilo francés y la intención de tu arreglo.',
-  ],
-  [
-    '¿Cómo hago un pedido personalizado?',
-    'Completa el formulario de creaciones personalizadas y revisa tu solicitud. Podrás compartir los detalles por WhatsApp cuando el canal esté disponible. La floristería confirmará contigo la propuesta y el importe.',
-  ],
-  [
-    '¿Con cuánta anticipación debo pedir?',
-    'Consúltanos la disponibilidad para tu fecha antes de dar el pedido por confirmado. La anticipación necesaria depende de las flores y de la composición que deseas.',
-  ],
-  [
-    '¿Realizan entregas a domicilio?',
-    'Sí, coordinamos delivery en Huancayo, El Tambo, Chilca y San Carlos. El costo depende del trayecto y se confirma según la dirección de entrega.',
-  ],
-  [
-    '¿Puedo incluir una tarjeta personalizada?',
-    'Sí. Puedes escribir el mensaje de tu tarjeta al preparar la solicitud y coordinaremos los detalles de presentación.',
-  ],
-  [
-    '¿Cómo se confirma el precio de mi pedido?',
-    'El importe se confirma directamente con Frisson después de revisar el arreglo, las personalizaciones y la dirección de entrega. Preparar una solicitud no constituye un pago ni una confirmación de compra.',
-  ],
-  [
-    '¿Qué ocurre si una flor no está disponible?',
-    'Conversaremos contigo sobre las opciones disponibles para mantener la emoción y el estilo de tu composición. La propuesta final debe coordinarse antes de confirmar el pedido.',
-  ],
-];
+import { questions } from '../data/faq';
 ---
 
 <section
-  class="faq section wrap mx-auto gap-20 w-11/12 max-w-7xl pt-30 pb-20 grid grid-cols-2 [&_h2]:text-5xl [&_h2]:max-w-80 [&_>_div_>_p:not(.eyebrow)]:text-sm [&_>_div_>_p:not(.eyebrow)]:text-muted [&_>_div_>_p:not(.eyebrow)]:leading-loose max-xl:gap-12 max-xl:w-11/12 max-lg:py-20 max-lg:gap-9 max-lg:w-11/12 max-lg:grid-cols-2 max-lg:[&_h2]:text-4xl max-sm:gap-6 max-sm:w-11/12 max-sm:pt-15 max-sm:pb-8 max-sm:grid-cols-1 max-sm:[&_h2]:text-4xl max-sm:[&_h2]:max-w-none max-sm:[&_h2]:mb-4 max-sm:[&_>_div_>_p:not(.eyebrow)]:text-xs"
+  class="faq section wrap mx-auto gap-20 w-11/12 max-w-5xl pt-30 pb-20 grid grid-cols-2 [&_h2]:text-5xl [&_h2]:max-w-80 [&_>_div_>_p:not(.eyebrow)]:text-sm [&_>_div_>_p:not(.eyebrow)]:text-muted [&_>_div_>_p:not(.eyebrow)]:leading-loose max-xl:gap-12 max-xl:w-11/12 max-lg:py-20 max-lg:gap-9 max-lg:w-11/12 max-lg:grid-cols-2 max-lg:[&_h2]:text-4xl max-sm:gap-6 max-sm:w-11/12 max-sm:pt-15 max-sm:pb-8 max-sm:grid-cols-1 max-sm:[&_h2]:text-4xl max-sm:[&_h2]:max-w-none max-sm:[&_h2]:mb-4 max-sm:[&_>_div_>_p:not(.eyebrow)]:text-xs"
   id="preguntas"
+  aria-labelledby="faq-title"
 >
   <div>
     <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
       CONVERSEMOS CON CALMA
     </p>
-    <h2>
+    <h2 id="faq-title">
       Quizá te <em>preguntes…</em>
     </h2>
     <p>
@@ -53,14 +21,16 @@ const questions = [
       Estamos para acompañar tu elección.
     </p>
   </div>
-  <div class="faq-list [&_details]:border-b [&_details]:border-solid [&_details]:border-b-line [&_details:first-child]:border-t [&_details:first-child]:border-solid [&_details:first-child]:border-t-line [&_summary]:py-5 [&_summary]:px-0 [&_summary]:gap-5 [&_summary]:flex [&_summary]:items-center [&_summary]:justify-between [&_summary]:text-sm [&_summary]:list-none [&_details_p]:text-sm [&_details_p]:leading-loose [&_details_p]:pr-8 [&_details_p]:text-muted [&_details_p]:mb-6 [&_details[open]_summary_svg]:rotate-45 [&_summary_svg]:transition-transform [&_summary_svg]:duration-300 supports-[interpolate-size:_allow-keywords]:[&_details]:[interpolate-size:allow-keywords] supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:[block-size:0] supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:opacity-0 supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:overflow-y-clip supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:transition-[block-size,opacity,content-visibility] supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:transition-discrete supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:duration-300 supports-[interpolate-size:_allow-keywords]:[&_details::details-content]:ease-floral supports-[interpolate-size:_allow-keywords]:[&_details[open]::details-content]:[block-size:auto] supports-[interpolate-size:_allow-keywords]:[&_details[open]::details-content]:opacity-100 max-lg:[&_summary]:text-xs max-sm:[&_summary]:py-5 max-sm:[&_summary]:text-xs max-sm:[&_details_p]:text-xs">
+  <div class="faq-list [&_details]:border-b [&_details]:border-solid [&_details]:border-b-line [&_details:first-child]:border-t [&_details:first-child]:border-solid [&_details:first-child]:border-t-line [&_summary]:py-5 [&_summary]:px-0 [&_summary]:gap-5 [&_summary]:flex [&_summary]:items-center [&_summary]:justify-between [&_summary]:text-sm [&_summary]:list-none [&_details_p]:text-sm [&_details_p]:leading-loose [&_details_p]:pr-8 [&_details_p]:text-muted [&_details_p]:mb-6 max-lg:[&_summary]:text-xs max-sm:[&_summary]:py-5 max-sm:[&_summary]:text-xs max-sm:[&_details_p]:text-xs">
     {questions.map(([q, a]) => (
       <details>
         <summary>
           {q}
           <Icon name="plus" size="sm" />
         </summary>
-        <p>{a}</p>
+        <div data-details-body>
+          <p>{a}</p>
+        </div>
       </details>
     ))}
   </div>

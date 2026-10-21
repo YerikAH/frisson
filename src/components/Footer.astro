@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import BrandLogo from './BrandLogo.astro';
 import { site } from '../config/site';
 import { whatsappUrl } from '../lib/orders';
 const contactUrl = whatsappUrl(
@@ -9,17 +10,22 @@ const contactUrl = whatsappUrl(
 ---
 
 <footer class="footer px-0 bg-footer bg-none text-ivory pt-16 pb-24 [&_h2]:mx-0 [&_h2]:font-sans [&_h2]:text-xs [&_h2]:tracking-normal [&_h2]:leading-relaxed [&_h2]:mt-3 [&_h2]:mb-5 max-sm:pt-10 max-sm:[&_h2]:mx-0 max-sm:[&_h2]:text-xs max-sm:[&_h2]:mt-0 max-sm:[&_h2]:mb-4">
-  <div class="wrap mx-auto w-11/12 max-w-7xl max-xl:w-11/12 max-lg:w-11/12 max-sm:w-11/12">
-    <div class="footer-grid gap-9 grid grid-cols-5 pb-16 [&_>_div:not(.footer-brand)_>_a]:block [&_>_div:not(.footer-brand)_>_a]:text-xs [&_>_div:not(.footer-brand)_>_a]:text-footer-muted [&_>_div:not(.footer-brand)_>_a]:mb-2.5 [&_a:hover]:underline [&_a:hover]:underline-offset-1.5 max-xl:gap-6 max-xl:grid-cols-5 max-lg:grid-cols-3 max-lg:gap-y-6 max-lg:gap-x-10 max-lg:[&_>_div:last-child]:col-start-3 max-sm:grid-cols-2 max-sm:gap-y-8 max-sm:gap-x-6 max-sm:pb-9 max-sm:[&_>_div:last-child]:col-auto max-sm:[&_>_div:not(.footer-brand)_>_a]:text-xs">
-      <div class="footer-brand [&_p]:mx-0 [&_p]:text-sm [&_p]:leading-relaxed [&_p]:mt-3 [&_p]:mb-5 [&_p]:max-w-48 [&_>_span]:text-xs [&_>_span]:tracking-wider [&_>_span]:text-footer-muted max-lg:row-span-2 max-sm:row-auto max-sm:col-span-full max-sm:[&_p]:my-0 max-sm:[&_p]:inline-block max-sm:[&_p]:mr-0 max-sm:[&_p]:ml-6 max-sm:[&_p]:text-sm max-sm:[&_p]:align-middle max-sm:[&_>_span]:block max-sm:[&_>_span]:text-xs max-sm:[&_>_span]:mt-3.5 max-xs:[&_p]:ml-3 max-xs:[&_p]:text-xs">
+  <div class="wrap mx-auto w-11/12 max-w-5xl max-xl:w-11/12 max-lg:w-11/12 max-sm:w-11/12">
+    <div class="footer-grid gap-9 grid grid-cols-5 pb-16 [&_>_div:not(.footer-brand)_>_a]:block [&_>_div:not(.footer-brand)_>_a]:text-xs [&_>_div:not(.footer-brand)_>_a]:text-footer-muted [&_>_div:not(.footer-brand)_>_a]:mb-2.5 [&_a:not(.footer-wordmark):hover]:underline [&_a:hover]:underline-offset-1.5 max-xl:gap-6 max-xl:grid-cols-5 max-lg:grid-cols-3 max-lg:gap-y-6 max-lg:gap-x-10 max-lg:[&_>_div:last-child]:col-start-3 max-sm:grid-cols-2 max-sm:gap-y-8 max-sm:gap-x-6 max-sm:pb-9 max-sm:[&_>_div:last-child]:col-auto max-sm:[&_>_div:not(.footer-brand)_>_a]:text-xs">
+      <div class="footer-brand max-lg:row-span-2 max-sm:row-auto max-sm:col-span-full max-sm:grid max-sm:grid-cols-[auto_1fr] max-sm:items-center max-sm:gap-x-6 max-sm:gap-y-4">
         <a
-          class="footer-wordmark font-serif text-4xl tracking-wide leading-snug max-xl:text-3xl max-sm:text-4xl"
+          class="footer-wordmark inline-flex"
           href="/"
+          aria-label="Frisson, inicio"
         >
-          FRISSON
+          <BrandLogo variant="stacked" />
         </a>
-        <p>{site.slogan}</p>
-        <span>Flores de autor. Emociones de verdad.</span>
+        <p class="mt-3 mb-5 max-w-48 text-sm leading-relaxed max-sm:m-0">
+          {site.slogan}
+        </p>
+        <span class="block text-xs tracking-wider text-footer-muted max-sm:col-span-full">
+          Flores de autor. Emociones de verdad.
+        </span>
       </div>
       <div>
         <h2>Explorar</h2>
@@ -57,14 +63,21 @@ const contactUrl = whatsappUrl(
         <a href="/#como-pedir">Cómo hacer un pedido</a>
       </div>
       <div class="footer-journal [&_p]:text-xs [&_p]:leading-relaxed [&_p]:text-footer-muted [&_.footer-journal-link]:py-3 [&_.footer-journal-link]:px-0 [&_.footer-journal-link]:flex! [&_.footer-journal-link]:items-center [&_.footer-journal-link]:justify-between [&_.footer-journal-link]:border-b [&_.footer-journal-link]:border-solid [&_.footer-journal-link]:border-b-footer-muted/60 max-sm:[&_p]:text-xs max-sm:[&_.footer-journal-link]:text-xs!">
-        <h2>Lo que está por florecer</h2>
+        <h2>Sigamos cerca</h2>
         <p>
-          Historias, inspiración y pequeños instantes de nuestro universo
-          floral.
+          Flores, historias y pequeños instantes en Instagram. Te esperamos en
+          @frisson.pee.
         </p>
-        <a class="footer-journal-link" href="/#comunidad">
-          Descubre nuestro journal <Icon name="arrow" size="md" />
-        </a>
+        {site.instagram && (
+          <a
+            class="footer-journal-link"
+            href={site.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Síguenos en Instagram <Icon name="instagram" size="sm" />
+          </a>
+        )}
       </div>
     </div>
     <div class="footer-bottom gap-5 border-t border-solid border-t-footer-muted/40 pt-5 flex justify-between items-center text-xs text-footer-muted [&_p]:m-0 [&_>_div]:gap-5 [&_>_div]:flex [&_a:hover]:text-white max-lg:flex-wrap max-lg:text-xs max-sm:gap-5 max-sm:text-xs max-sm:[&_>_div]:gap-4 max-sm:[&_>_a]:ml-auto">
@@ -73,8 +86,12 @@ const contactUrl = whatsappUrl(
         <a href="/privacidad">Privacidad</a>
         <a href="/terminos">Términos e información comercial</a>
       </div>
-      <a href="#inicio" aria-label="Volver al inicio">
-        Volver arriba ↑
+      <a
+        href="#inicio"
+        aria-label="Volver al inicio"
+        class="inline-flex items-center gap-2"
+      >
+        Volver arriba <Icon name="up" size="sm" />
       </a>
     </div>
   </div>

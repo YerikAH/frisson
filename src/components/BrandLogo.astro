@@ -1,0 +1,60 @@
+---
+interface Props {
+  variant?: 'compact' | 'stacked';
+  class?: string;
+}
+const { variant = 'compact', class: className } = Astro.props;
+const stacked = variant === 'stacked';
+---
+
+<span
+  class:list={[
+    'inline-flex shrink-0 flex-col items-center text-center select-none',
+    stacked ? 'gap-2' : 'gap-0.5',
+    className,
+  ]}
+  role="img"
+  aria-label="Frisson, floristería"
+>
+  <span
+    class:list={[
+      'block shrink-0 bg-current mask-[url(/images/brand/frisson-sprig.png)] mask-contain mask-center mask-no-repeat',
+      stacked
+        ? 'h-24 w-16'
+        : 'h-16 w-11 opacity-100 transition-[height,opacity,translate,scale] duration-300 ease-floral group-data-[scrolled=true]/scroll-header:h-0 group-data-[scrolled=true]/scroll-header:-translate-y-1 group-data-[scrolled=true]/scroll-header:scale-90 group-data-[scrolled=true]/scroll-header:opacity-0 motion-reduce:transition-none max-sm:h-14 max-sm:w-10 max-sm:group-data-[scrolled=true]/scroll-header:h-0',
+    ]}
+    aria-hidden="true"
+  ></span>
+  <span
+    class:list={[
+      'block font-brand font-light leading-none tracking-wider',
+      stacked ? 'text-4xl' : 'text-3xl max-sm:text-2xl',
+    ]}
+  >
+    frisson.
+  </span>
+  <span
+    class:list={[
+      'flex w-3/4 items-center',
+      stacked ? 'h-1.5 gap-2' : 'h-1 gap-1',
+    ]}
+    aria-hidden="true"
+  >
+    <span class="flex-1 border-t border-current opacity-60"></span>
+    <span
+      class:list={[
+        'block shrink-0 rotate-45 bg-current',
+        stacked ? 'size-1' : 'size-0.5',
+      ]}
+    ></span>
+    <span class="flex-1 border-t border-current opacity-60"></span>
+  </span>
+  <span
+    class:list={[
+      'block font-brand font-light leading-none tracking-wide',
+      stacked ? 'text-sm' : 'text-xs',
+    ]}
+  >
+    floristería
+  </span>
+</span>

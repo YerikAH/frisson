@@ -3,17 +3,20 @@ import Icon from './Icon.astro';
 ---
 
 <section
-  class="brand-story section wrap mx-auto py-30 gap-28 w-11/12 max-w-7xl grid grid-cols-2 items-center max-xl:gap-15 max-xl:w-11/12 max-lg:py-20 max-lg:gap-10 max-lg:w-11/12 max-sm:py-15 max-sm:gap-11 max-sm:w-11/12 max-sm:grid-cols-1"
+  class="brand-story section wrap mx-auto py-30 gap-28 w-11/12 max-w-5xl grid grid-cols-2 items-center max-xl:gap-15 max-xl:w-11/12 max-lg:py-20 max-lg:gap-10 max-lg:w-11/12 max-sm:py-15 max-sm:gap-11 max-sm:w-11/12 max-sm:grid-cols-1"
   id="historia"
 >
-  <div class="story-photo relative [&_img]:h-160 [&_img]:w-full [&_img]:object-cover [&_img]:rounded-t-full [&_img]:rounded-b-sm [&_>_span]:block [&_>_span]:absolute [&_>_span]:bottom-6 [&_>_span]:left-0 [&_>_span]:right-0 [&_>_span]:text-center [&_>_span]:text-ivory [&_>_span]:text-xs [&_>_span]:tracking-widest [&_>_span]:text-shadow-photo max-xl:[&_img]:h-136 max-lg:[&_img]:h-132 max-sm:[&_img]:h-110 max-sm:[&_img]:rounded-t-full max-sm:[&_img]:rounded-b-sm max-sm:[&_>_span]:text-xs">
-    <img
-      src="/images/instagram/flores-amarillas.webp"
-      alt="Creación de Frisson con flores amarillas sobre una mesa de madera, entre libros y luz de ventana"
-      width="478"
-      height="640"
-      loading="lazy"
-    />
+  <div class="story-photo relative [&_.story-photo-crop]:h-160 [&_img]:w-full [&_img]:object-cover [&_img]:rounded-t-full [&_img]:rounded-b-sm [&_>_span]:block [&_>_span]:absolute [&_>_span]:bottom-6 [&_>_span]:left-0 [&_>_span]:right-0 [&_>_span]:text-center [&_>_span]:text-ivory [&_>_span]:text-xs [&_>_span]:tracking-widest [&_>_span]:text-shadow-photo max-xl:[&_.story-photo-crop]:h-136 max-lg:[&_.story-photo-crop]:h-132 max-sm:[&_.story-photo-crop]:h-110 max-sm:[&_img]:rounded-t-full max-sm:[&_img]:rounded-b-sm max-sm:[&_>_span]:text-xs">
+    <div class="story-photo-crop overflow-hidden rounded-t-full rounded-b-sm">
+      <img
+        src="/images/instagram/flores-amarillas.webp"
+        alt="Creación de Frisson con flores amarillas sobre una mesa de madera, entre libros y luz de ventana"
+        width="478"
+        height="640"
+        loading="lazy"
+        class="h-full w-full"
+      />
+    </div>
     <span>EL AMOR POR LOS PEQUEÑOS DETALLES</span>
   </div>
   <div class="story-copy [&_h2]:text-6xl [&_>_p:not(.eyebrow):not(.story-definition)]:text-sm [&_>_p:not(.eyebrow):not(.story-definition)]:leading-loose [&_>_p:not(.eyebrow):not(.story-definition)]:text-muted [&_.text-link]:mt-4 max-lg:[&_h2]:text-4xl max-lg:[&_>_p:not(.eyebrow):not(.story-definition)]:text-xs max-sm:[&_h2]:text-4xl max-sm:[&_>_p:not(.eyebrow):not(.story-definition)]:text-sm">

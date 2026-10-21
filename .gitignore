@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # Temporary reference renders and QA intermediates
 tmp/
+
+# Browser motion verification
+playwright-report/
+test-results/

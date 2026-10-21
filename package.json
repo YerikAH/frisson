@@ -13,18 +13,33 @@
     "check": "astro check",
     "test": "node --test tests/*.test.mjs",
     "verify": "npm run check && npm test && npm run build && node scripts/verify-build.mjs",
-    "format": "prettier --write ."
+    "images:social": "node scripts/generate-social-images.mjs",
+    "images:favicons": "node scripts/generate-favicons.mjs",
+    "format": "prettier --write .",
+    "test:motion": "astro dev --background && playwright test"
   },
   "dependencies": {
+    "@astrojs/react": "^7.1.0",
+    "@astrojs/sitemap": "^3.7.4",
+    "@lucide/astro": "^1.60.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.1",
+    "gsap": "^3.15.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "simple-icons": "^16.35.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.11",
+    "@playwright/test": "^1.64.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "fontkit": "^2.0.4",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.35.5",
     "typescript": "^6.0.3"
   }
 }

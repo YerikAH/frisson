@@ -1,6 +1,14 @@
 @import 'tailwindcss';
 
 @font-face {
+  font-family: Cormorant Garamond;
+  src: url('/fonts/cormorant-garamond-light-logo.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: Bodoni;
   src: url('/fonts/bodoni-regular.woff2') format('woff2');
   font-weight: 500;
@@ -42,6 +50,7 @@
   --color-whatsapp: #35543d;
   --color-whatsapp-hover: #294530;
   --font-serif: Bodoni, Georgia, serif;
+  --font-brand: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'DM Sans', Arial, sans-serif;
   --breakpoint-xs: 24rem;
   --ease-floral: cubic-bezier(0.22, 1, 0.36, 1);
@@ -110,7 +119,7 @@
   a svg {
     @apply shrink-0;
   }
-  :is(a, button, input, select, textarea, summary):focus-visible {
+  :is(a, button, summary, input[type='checkbox']):focus-visible {
     @apply outline-2 outline-olive outline-solid;
   }
   ::selection {
@@ -137,7 +146,7 @@
   input:not([type='checkbox']),
   select,
   textarea {
-    @apply block min-h-12 w-full min-w-0 rounded-none border-0 border-b border-line bg-transparent px-0 py-3 font-sans text-sm leading-relaxed max-sm:text-base;
+    @apply block min-h-12 w-full min-w-0 rounded-none border-0 border-b border-line bg-transparent px-0 py-3 font-sans text-sm leading-relaxed transition-colors duration-200 outline-none focus:border-olive max-sm:text-base;
   }
   select {
     @apply pr-5;
@@ -156,24 +165,11 @@
     @apply my-4;
   }
   dialog {
-    @apply m-auto max-h-[90dvh] max-w-11/12 [transform:var(--dialog-closed-transform)] rounded-md border border-line bg-paper p-9 text-ink opacity-0 shadow-dialog transition-[opacity,transform,display,overlay] transition-discrete duration-300 ease-floral [--dialog-closed-transform:translateY(1rem)_scale(0.95)] max-sm:p-6;
-  }
-  dialog[open] {
-    @apply transform-none opacity-100;
+    @apply m-auto max-h-[90dvh] max-w-11/12 rounded-md border border-line bg-paper p-9 text-ink shadow-dialog max-sm:p-6;
   }
   dialog::backdrop {
-    @apply bg-ink/0 backdrop-blur-none transition-[background-color,backdrop-filter,display,overlay] transition-discrete duration-300 ease-floral;
-  }
-  dialog[open]::backdrop {
-    @apply bg-ink/40 backdrop-blur-xs;
-  }
-  @starting-style {
-    dialog[open] {
-      @apply [transform:var(--dialog-closed-transform)] opacity-0;
-    }
-    dialog[open]::backdrop {
-      @apply bg-ink/0 backdrop-blur-none;
-    }
+    background: rgb(43 44 33 / var(--backdrop-opacity, 0.4));
+    backdrop-filter: blur(calc(var(--backdrop-opacity, 0.4) * 5px));
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -186,5 +182,138 @@
     details::details-content {
       @apply animate-none! transition-none!;
     }
+  }
+}
+
+/* Keep selection actions and their note at the bottom, without an inner scroller. */
+.cart-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.cart-dialog > *,
+.cart-dialog::before {
+  flex-shrink: 0;
+}
+
+/* Native scrollbars, with the same paper and olive palette as the dialogs. */
+dialog,
+dialog pre {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(
+      in srgb,
+      var(--color-olive) 55%,
+      var(--color-paper)
+    )
+    var(--color-paper);
+}
+dialog::-webkit-scrollbar,
+dialog pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+dialog::-webkit-scrollbar-track,
+dialog pre::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+dialog::-webkit-scrollbar-thumb,
+dialog pre::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-olive) 55%, var(--color-paper));
+  border-radius: 0;
+}
+dialog::-webkit-scrollbar-thumb:hover,
+dialog pre::-webkit-scrollbar-thumb:hover {
+  background: var(--color-olive);
+}
+@media (forced-colors: active) {
+  dialog,
+  dialog pre {
+    scrollbar-color: auto;
+  }
+}
+
+/* Motion owns transform/opacity only while running; HTML stays visible without JS. */
+.hero #hero-title .hero-title-last {
+  font: inherit;
+  letter-spacing: inherit;
+  margin: 0;
+  line-height: inherit;
+}
+[data-statement-line],
+[data-cta-line] {
+  display: inline-block;
+}
+[data-details-body] {
+  display: flow-root;
+}
+[data-motion-line] {
+  position: absolute;
+  inset-inline: 0;
+  height: 1px;
+  background: var(--color-line);
+  pointer-events: none;
+}
+[data-motion-line='top'] {
+  top: -1px;
+}
+[data-motion-line='bottom'] {
+  bottom: -1px;
+}
+.values-strip,
+.steps-grid article,
+.personalize-details {
+  position: relative;
+}
+body:has(dialog[open]) .whatsapp-float {
+  visibility: hidden;
+}
+
+/* CSS retains color/elevation feedback while GSAP owns transform and opacity. */
+.button,
+.whatsapp-float {
+  transition-property:
+    color, background-color, border-color, box-shadow, translate;
+}
+.product-add {
+  transition-property:
+    color, background-color, border-color, box-shadow, opacity, translate;
+}
+
+/* Cross-document effects; the early opt-in lives in Layout.astro. */
+
+@keyframes frisson-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes frisson-page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-group(root) {
+  animation-duration: 300ms;
+}
+
+::view-transition-old(root) {
+  animation: frisson-page-out 200ms ease-out both;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: frisson-page-in 300ms ease-out both;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

@@ -1,10 +1,12 @@
+import { DEFAULT_SITE_URL, normalizeSiteUrl } from '../lib/seo';
+
 /** Datos comerciales confirmados. Completar solo con información aprobada por Frisson. */
 export const site = {
   name: 'FRISSON',
   slogan: 'Floristería & emociones a flor de piel 🍁',
   description:
     'Floristería de autor en Huancayo. Ramos franceses y composiciones únicas para transformar emociones en recuerdos.',
-  url: import.meta.env.PUBLIC_SITE_URL || '',
+  url: normalizeSiteUrl(import.meta.env.PUBLIC_SITE_URL || DEFAULT_SITE_URL),
   whatsapp: import.meta.env.PUBLIC_WHATSAPP_NUMBER || '51903235318', // Número oficial confirmado; código de país y número, solo dígitos.
   instagram: 'https://www.instagram.com/frisson.pee/',
   tiktok: '',

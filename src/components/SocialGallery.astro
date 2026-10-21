@@ -5,13 +5,13 @@ import { journal as photos } from '../data/journal';
 ---
 
 <section
-  class="social section wrap mx-auto w-11/12 max-w-7xl pt-9 pb-25 [&_.section-heading]:items-center max-xl:w-11/12 max-lg:py-20 max-lg:w-11/12 max-sm:w-11/12 max-sm:pt-0 max-sm:pb-15 max-sm:[&_.section-heading]:gap-5 max-sm:[&_.section-heading]:items-start max-sm:[&_.section-heading_h2]:text-4xl"
+  class="social section wrap mx-auto w-11/12 max-w-5xl pt-9 pb-25 [&_.section-heading]:items-center max-xl:w-11/12 max-lg:py-20 max-lg:w-11/12 max-sm:w-11/12 max-sm:pt-0 max-sm:pb-15 max-sm:[&_.section-heading]:gap-5 max-sm:[&_.section-heading]:items-start max-sm:[&_.section-heading_h2]:text-4xl"
   id="comunidad"
 >
   <div class="section-heading gap-6 flex justify-between items-end mb-12 [&_h2]:m-0 [&_>_.button]:mb-2.5 max-lg:mb-9 max-lg:[&_h2]:text-4xl max-lg:[&_.button]:px-5 max-lg:[&_.button]:gap-3 max-lg:[&_.button]:text-xs max-sm:gap-6 max-sm:items-start max-sm:flex-col max-sm:mb-8 max-sm:[&_h2]:text-4xl max-sm:[&_>_.button]:m-0 max-sm:[&_>_.button]:py-2 max-sm:[&_>_.button]:px-5 max-sm:[&_>_.button]:gap-5 max-sm:[&_>_.button]:text-xs max-sm:[&_>_.button]:min-h-9">
     <div>
       <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
-        EL JOURNAL DE FRISSON
+        NUESTRO INSTAGRAM · @FRISSON.PEE
       </p>
       <h2>
         La vida, <em>a flor de piel.</em>
@@ -19,18 +19,18 @@ import { journal as photos } from '../data/journal';
     </div>
     <div class="social-intro [&_p]:m-0 [&_p]:text-sm [&_p]:leading-relaxed [&_.text-link]:mr-3.5 max-lg:[&_p]:text-xs max-sm:[&_p]:text-xs">
       <p>
-        Un vistazo a nuestro universo floral.
+        Ramos, historias e inspiración floral.
         <br />
-        Ramos, colores y pequeños instantes.
+        Sé parte de nuestro universo en Instagram.
       </p>
       {site.instagram && (
         <a
-          class="text-link gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
+          class="button mt-4 inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-solid border-olive bg-olive px-6 py-3 text-xs font-medium text-paper transition-colors hover:border-ink hover:bg-ink focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-olive focus-visible:outline-offset-2 max-sm:min-h-11"
           href={site.instagram}
           target="_blank"
           rel="noopener noreferrer"
         >
-          @frisson.pee <Icon name="arrow" size="sm" />
+          <Icon name="instagram" size="sm" /> Síguenos en Instagram
         </a>
       )}
       {site.tiktok && (
@@ -48,7 +48,7 @@ import { journal as photos } from '../data/journal';
   <div class="social-grid gap-5 grid grid-cols-4 items-start max-lg:gap-3 max-sm:gap-4 max-sm:grid-cols-2">
     {photos.map((photo, i) =>
       photo.videoSrc ? (
-        <figure class="gallery-item gallery-video m-0 p-0 relative text-left overflow-hidden rounded-xs [&:nth-child(even)]:mt-10 [&_img]:w-full [&_img]:h-96 [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-500 [&:hover_img]:scale-105 [&::after]:content-[''] [&::after]:absolute [&::after]:top-1/2 [&::after]:right-0 [&::after]:bottom-0 [&::after]:left-0 [&::after]:bg-linear-to-b [&::after]:from-transparent [&::after]:to-ink/65 [&::after]:bg-transparent [&::after]:hidden max-xl:[&_img]:h-79 max-lg:[&_img]:h-66 max-sm:[&_img]:h-63 max-sm:[&:nth-child(even)]:mt-6 max-xs:[&_img]:h-52 [&_video]:block [&_video]:w-full [&_video]:h-80 [&_video]:object-cover [&_figcaption]:pt-2.5 [&_figcaption]:text-xs max-sm:[&_video]:h-63">
+        <figure class="gallery-item gallery-video m-0 p-0 relative text-left overflow-hidden rounded-xs [&:nth-child(even)]:mt-10 [&_img]:w-full [&_img]:h-96 [&_img]:object-cover [&::after]:content-[''] [&::after]:absolute [&::after]:top-1/2 [&::after]:right-0 [&::after]:bottom-0 [&::after]:left-0 [&::after]:bg-linear-to-b [&::after]:from-transparent [&::after]:to-ink/65 [&::after]:bg-transparent [&::after]:hidden max-xl:[&_img]:h-79 max-lg:[&_img]:h-66 max-sm:[&_img]:h-63 max-sm:[&:nth-child(even)]:mt-6 max-xs:[&_img]:h-52 [&_video]:block [&_video]:w-full [&_video]:h-80 [&_video]:object-cover [&_figcaption]:pt-2.5 [&_figcaption]:text-xs max-sm:[&_video]:h-63">
           <video
             controls
             preload="none"
@@ -72,7 +72,7 @@ import { journal as photos } from '../data/journal';
         </figure>
       ) : (
         <button
-          class="gallery-item p-0 relative text-left overflow-hidden rounded-xs [&:nth-child(even)]:mt-10 [&_img]:w-full [&_img]:h-96 [&_img]:object-cover [&_img]:transition-transform [&_img]:duration-500 [&:hover_img]:scale-105 [&::after]:content-[''] [&::after]:absolute [&::after]:top-1/2 [&::after]:right-0 [&::after]:bottom-0 [&::after]:left-0 [&::after]:bg-linear-to-b [&::after]:from-transparent [&::after]:to-ink/65 [&::after]:bg-transparent max-xl:[&_img]:h-79 max-lg:[&_img]:h-66 max-sm:[&_img]:h-63 max-sm:[&:nth-child(even)]:mt-6 max-xs:[&_img]:h-52"
+          class="gallery-item p-0 relative text-left overflow-hidden rounded-xs [&:nth-child(even)]:mt-10 [&_img]:w-full [&_img]:h-96 [&_img]:object-cover [&::after]:content-[''] [&::after]:absolute [&::after]:top-1/2 [&::after]:right-0 [&::after]:bottom-0 [&::after]:left-0 [&::after]:bg-linear-to-b [&::after]:from-transparent [&::after]:to-ink/65 [&::after]:bg-transparent max-xl:[&_img]:h-79 max-lg:[&_img]:h-66 max-sm:[&_img]:h-63 max-sm:[&:nth-child(even)]:mt-6 max-xs:[&_img]:h-52"
           data-gallery-image={`/images/${photo.image}.webp`}
           data-gallery-title={photo.title}
           data-gallery-alt={photo.text}

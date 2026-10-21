@@ -1,0 +1,207 @@
+---
+import { site } from '../config/site';
+import { pageMetadata, socialImage } from '../config/seo';
+import { products, type Product } from '../data/products';
+import { questions } from '../data/faq';
+import {
+  isIndexablePath,
+  normalizePathname,
+  serializeJsonLd,
+} from '../lib/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  product?: Product;
+}
+
+const { product } = Astro.props;
+const path = normalizePathname(Astro.url.pathname);
+const metadata = pageMetadata[path] || pageMetadata['/'];
+const title =
+  Astro.props.title ||
+  (product ? `${product.name} · Flores en Huancayo | Frisson` : metadata.title);
+const description =
+  Astro.props.description ||
+  (product
+    ? `${product.name}: ${product.flowers.toLowerCase()}. Consulta tu arreglo de autor en Huancayo con Frisson.`
+    : metadata.description);
+const noindex = Astro.props.noindex || !isIndexablePath(path);
+const canonical = new URL(path, site.url).href;
+const image = new URL(socialImage.path, site.url).href;
+const imageAlt = socialImage.alt;
+const organizationId = `${site.url}/#marca`;
+const websiteId = `${site.url}/#sitio`;
+const pageId = `${canonical}#pagina`;
+const imageId = `${canonical}#imagen`;
+const hasFAQ = path === '/' || path === '/contacto';
+const breadcrumbs =
+  path === '/'
+    ? []
+    : [
+        { name: 'Inicio', path: '/' },
+        ...(product ? [{ name: 'Catálogo', path: '/catalogo' }] : []),
+        { name: product?.name || metadata.name, path },
+      ];
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': organizationId,
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    image,
+    sameAs: [site.instagram, site.tiktok].filter(Boolean),
+    areaServed: site.zones.map((name) => ({ '@type': 'Place', name })),
+    ...(site.whatsapp
+      ? {
+          contactPoint: {
+            '@type': 'ContactPoint',
+            telephone: `+${site.whatsapp}`,
+            contactType: 'customer service',
+            availableLanguage: 'es',
+            url: `https://wa.me/${site.whatsapp}`,
+          },
+        }
+      : {}),
+  },
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: `${site.url}/`,
+    name: site.name,
+    inLanguage: 'es-PE',
+    publisher: { '@id': organizationId },
+  },
+  {
+    '@type': 'ImageObject',
+    '@id': imageId,
+    url: image,
+    contentUrl: image,
+    width: socialImage.width,
+    height: socialImage.height,
+    caption: imageAlt,
+    inLanguage: 'es-PE',
+  },
+  {
+    '@type': hasFAQ
+      ? [metadata.type || 'WebPage', 'FAQPage']
+      : metadata.type || 'WebPage',
+    '@id': pageId,
+    url: canonical,
+    name: title,
+    description,
+    inLanguage: 'es-PE',
+    isPartOf: { '@id': websiteId },
+    about: { '@id': organizationId },
+    primaryImageOfPage: { '@id': imageId },
+    ...(breadcrumbs.length
+      ? { breadcrumb: { '@id': `${canonical}#ruta` } }
+      : {}),
+    ...(hasFAQ
+      ? {
+          mainEntity: questions.map(([question, answer]) => ({
+            '@type': 'Question',
+            name: question,
+            acceptedAnswer: { '@type': 'Answer', text: answer },
+          })),
+        }
+      : product
+        ? { mainEntity: { '@id': `${canonical}#composicion` } }
+        : {}),
+  },
+];
+if (breadcrumbs.length) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#ruta`,
+    itemListElement: breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: new URL(item.path, site.url).href,
+    })),
+  });
+}
+if (path === '/catalogo') {
+  graph.push({
+    '@type': 'ItemList',
+    '@id': `${canonical}#coleccion`,
+    name: 'Colección floral de Frisson',
+    numberOfItems: products.length,
+    itemListElement: products.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: new URL(`/catalogo/${item.id}`, site.url).href,
+    })),
+  });
+}
+if (product) {
+  graph.push({
+    '@type': 'Product',
+    '@id': `${canonical}#composicion`,
+    url: canonical,
+    name: product.name,
+    description: product.description,
+    image: new URL(`/images/${product.image}.webp`, site.url).href,
+    category: product.category,
+    color: product.colors,
+    brand: { '@type': 'Brand', name: site.name },
+    mainEntityOfPage: { '@id': pageId },
+    // Solo publicar importes confirmados; no inventar stock, valoraciones o tarifas.
+    ...(product.price !== null
+      ? {
+          offers: {
+            '@type': 'Offer',
+            url: canonical,
+            priceCurrency: 'PEN',
+            price: product.price,
+            seller: { '@id': organizationId },
+          },
+        }
+      : {}),
+  });
+}
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content="Frisson" />
+<meta
+  name="robots"
+  content={
+    noindex
+      ? 'noindex, follow'
+      : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+  }
+/>
+{!noindex && <link rel="canonical" href={canonical} />}
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_PE" />
+<meta property="og:site_name" content="Frisson" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:secure_url" content={image} />
+<meta property="og:image:type" content={socialImage.type} />
+<meta property="og:image:width" content={String(socialImage.width)} />
+<meta property="og:image:height" content={String(socialImage.height)} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={imageAlt} />
+{!noindex && (
+  <script
+    type="application/ld+json"
+    set:html={serializeJsonLd({
+      '@context': 'https://schema.org',
+      '@graph': graph,
+    })}
+  />
+)}

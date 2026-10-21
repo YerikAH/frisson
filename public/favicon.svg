@@ -1,1 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="32" fill="#3e4936"/><text x="32" y="47" text-anchor="middle" font-family="Georgia,serif" font-size="47" fill="#f4e8df">f</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Frisson</title>
+  <rect width="64" height="64" rx="14" fill="#f4e8df"/>
+  <g fill="none" stroke="#3f3429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 55c2-15-2-29 3-44"/>
+    <path d="M30 46c-6-8-8-16-10-24M25 36l-8-7M22 29l3-7"/>
+    <path d="M30 39c8-6 11-13 14-22M38 30l9-5M41 24l-3-5"/>
+    <path d="M31 51c7-5 12-10 16-16M40 44l8-1"/>
+    <path d="m31 29-5-9m6 1 6-6M30 48l-7-4"/>
+  </g>
+  <g fill="#3f3429">
+    <ellipse cx="33" cy="10" rx="2.2" ry="3.2" transform="rotate(8 33 10)"/>
+    <ellipse cx="26" cy="18" rx="2" ry="3" transform="rotate(-28 26 18)"/>
+    <ellipse cx="39" cy="13" rx="2" ry="3" transform="rotate(32 39 13)"/>
+    <ellipse cx="19" cy="20" rx="2.2" ry="3.2" transform="rotate(-22 19 20)"/>
+    <ellipse cx="25" cy="21" rx="1.8" ry="2.8" transform="rotate(16 25 21)"/>
+    <ellipse cx="15" cy="28" rx="2" ry="3" transform="rotate(-42 15 28)"/>
+    <ellipse cx="45" cy="15" rx="2.2" ry="3.2" transform="rotate(24 45 15)"/>
+    <ellipse cx="38" cy="18" rx="1.8" ry="2.8" transform="rotate(-20 38 18)"/>
+    <ellipse cx="49" cy="24" rx="2" ry="3" transform="rotate(48 49 24)"/>
+    <ellipse cx="48" cy="33" rx="2.2" ry="3.2" transform="rotate(34 48 33)"/>
+    <path d="M25 39c-5 1-8-2-8-5 5-1 8 1 8 5ZM37 36c1-5 4-7 7-6-1 5-3 7-7 6ZM41 45c3-4 7-5 10-3-3 4-6 5-10 3ZM27 47c-5 1-8-1-9-4 5-1 8 0 9 4Z"/>
+  </g>
+</svg>

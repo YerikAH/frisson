@@ -1,0 +1,78 @@
+---
+import BrandLogo from './BrandLogo.astro';
+---
+
+<div
+  id="brand-intro"
+  class="fixed inset-0 z-200 grid place-items-center bg-paper p-8 text-ink opacity-100 transition-opacity duration-500 ease-floral data-leaving:pointer-events-none data-leaving:opacity-0 motion-reduce:transition-none"
+  role="status"
+  aria-label="Cargando Frisson"
+  data-replay-on-reload={import.meta.env.DEV ? 'true' : undefined}
+  hidden
+>
+  <div class="transition-[opacity,scale,translate] duration-500 ease-floral starting:translate-y-2 starting:scale-95 starting:opacity-0 motion-reduce:transition-none">
+    <BrandLogo variant="stacked" class="scale-125" />
+  </div>
+</div>
+
+<!-- Runs before the page markup can paint; the default without JS is the website. -->
+<script is:inline>
+  (() => {
+    const intro = document.getElementById('brand-intro');
+    const root = document.documentElement;
+    const key = 'frisson-intro-seen-v1';
+    const navigation = performance.getEntriesByType('navigation')[0];
+    const previewReload =
+      intro.dataset.replayOnReload === 'true' && navigation?.type === 'reload';
+    let firstVisit = false;
+    try {
+      firstVisit = previewReload || sessionStorage.getItem(key) !== '1';
+    } catch {
+      firstVisit = previewReload;
+    }
+    if (!firstVisit) {
+      intro.remove();
+      return;
+    }
+
+    let finished = false;
+    let exitTimer;
+    root.dataset.brandIntro = 'active';
+    intro.hidden = false;
+
+    const lockSite = () => {
+      if (!finished)
+        document.getElementById('site-shell')?.setAttribute('inert', '');
+    };
+    const finish = () => {
+      finished = true;
+      clearTimeout(revealTimer);
+      clearTimeout(exitTimer);
+      delete root.dataset.brandIntro;
+      document.getElementById('site-shell')?.removeAttribute('inert');
+      intro.remove();
+      window.removeEventListener('pagehide', finish);
+    };
+    const revealTimer = window.setTimeout(() => {
+      try {
+        // Count the intro only after the logo has actually been displayed.
+        sessionStorage.setItem(key, '1');
+      } catch {
+        /* Browsing remains available if session storage is blocked. */
+      }
+      root.dataset.brandIntro = 'leaving';
+      intro.setAttribute('data-leaving', '');
+      window.dispatchEvent(new Event('frisson:intro-reveal'));
+      exitTimer = window.setTimeout(
+        finish,
+        matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 500,
+      );
+    }, 1000);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', lockSite, { once: true });
+    } else lockSite();
+    // A restored history entry must never come back with a blocking overlay.
+    window.addEventListener('pagehide', finish, { once: true });
+  })();
+</script>

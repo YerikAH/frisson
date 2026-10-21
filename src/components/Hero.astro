@@ -2,22 +2,31 @@
 import FeatureCard from './FeatureCard.astro';
 import Icon from './Icon.astro';
 import { site } from '../config/site';
+import { whatsappUrl } from '../lib/orders';
+
+const contactUrl = whatsappUrl(
+  site.whatsapp,
+  'Hola, Frisson. Me gustaría conocer sus creaciones y hacer una consulta.',
+);
 ---
 
 <section
-  class="hero wrap mx-auto w-11/12 max-w-7xl relative h-232 isolate [&_h1]:m-0 [&_h1]:relative [&_h1]:text-center [&_h1]:text-9xl [&_h1]:leading-none [&_h1]:tracking-tighter [&_h1]:z-1 [&_h1]:whitespace-nowrap [&_h1_span]:block [&_h1_span]:text-5xl [&_h1_span]:tracking-tighter [&_h1_span]:leading-tight [&_h1_span]:mb-1.5 2xl:[&_h1]:text-9xl 2xl:h-232 max-xl:w-11/12 max-xl:h-212 max-xl:[&_h1]:text-9xl max-lg:w-11/12 max-lg:h-220 max-lg:[&_h1]:text-8xl max-lg:[&_h1_span]:text-5xl max-sm:px-5 max-sm:w-full max-sm:h-auto max-sm:min-h-290 max-sm:pb-20 max-sm:[&_h1]:text-6xl max-sm:[&_h1]:leading-none max-sm:[&_h1]:tracking-tighter max-sm:[&_h1]:whitespace-normal max-sm:[&_h1_span]:text-4xl max-sm:[&_h1_span]:leading-tight max-sm:[&_h1_span]:mb-0.5 max-xs:min-h-284 max-xs:[&_h1]:text-5xl"
+  class="hero wrap mx-auto w-11/12 max-w-5xl relative h-232 isolate [&_h1]:m-0 [&_h1]:relative [&_h1]:text-center [&_h1]:text-9xl [&_h1]:leading-none [&_h1]:tracking-tighter [&_h1]:z-1 [&_h1]:whitespace-nowrap [&_h1_span]:block [&_h1_span]:text-5xl [&_h1_span]:tracking-tighter [&_h1_span]:leading-tight [&_h1_span]:mb-1.5 2xl:[&_h1]:text-9xl 2xl:h-232 max-xl:w-11/12 max-xl:h-212 max-xl:[&_h1]:text-9xl max-lg:w-11/12 max-lg:h-220 max-lg:[&_h1]:text-8xl max-lg:[&_h1_span]:text-5xl max-sm:px-5 max-sm:w-full max-sm:h-auto max-sm:min-h-290 max-sm:pb-20 max-sm:[&_h1]:text-6xl max-sm:[&_h1]:leading-none max-sm:[&_h1]:tracking-tighter max-sm:[&_h1]:whitespace-normal max-sm:[&_h1_span]:text-4xl max-sm:[&_h1_span]:leading-tight max-sm:[&_h1_span]:mb-0.5 max-xs:min-h-284 max-xs:[&_h1]:text-5xl"
   id="flores"
   aria-labelledby="hero-title"
 >
   <div
-    class="hero-band absolute w-96 left-1/2 top-0 bottom-0 -translate-x-1/2 -z-1 bg-linear-to-b from-hero-tint via-hero-tint via-55% to-paper/0 bg-transparent max-xl:w-80 max-lg:w-64 max-sm:w-3/5 max-sm:-top-20 max-sm:bottom-65 max-sm:bg-linear-to-b max-sm:from-hero-tint max-sm:via-pale max-sm:via-60% max-sm:to-paper/0 max-sm:bg-transparent"
+    class="hero-band absolute w-96 left-1/2 -top-32 bottom-0 -translate-x-1/2 -z-1 bg-linear-to-b from-hero-tint via-hero-tint via-55% to-paper/0 bg-transparent max-xl:w-80 max-lg:w-64 max-sm:w-3/5 max-sm:-top-28 max-sm:bottom-65 max-sm:bg-linear-to-b max-sm:from-hero-tint max-sm:via-pale max-sm:via-60% max-sm:to-paper/0 max-sm:bg-transparent"
     aria-hidden="true"
   ></div>
   <p class="hero-kicker text-center relative pt-5 text-xs tracking-widest mb-5 z-2 max-lg:text-xs max-lg:pt-6 max-sm:text-xs max-sm:tracking-wider max-sm:pt-5 max-sm:mb-6">
     {site.slogan.replace(' 🍁', '').toUpperCase()}
   </p>
   <h1 id="hero-title">
-    <span>Flores que te</span>hacen sentir.
+    <span data-hero-line>Flores que te</span>
+    <span data-hero-line class="hero-title-last">
+      hacen sentir.
+    </span>
   </h1>
   <div class="hero-copy hero-copy-left absolute z-3 text-sm leading-relaxed top-60 left-2 [&_.small-label]:block [&_.small-label]:text-xs [&_.small-label]:tracking-widest [&_.small-label]:mb-3.5 [&_.text-link]:mt-1 [&_.text-link]:text-xs [&_p]:mb-3.5 2xl:left-6 max-xl:top-56 max-xl:text-xs max-lg:top-56 max-lg:w-35 max-lg:text-xs max-lg:left-0 max-lg:[&_.small-label]:text-xs max-sm:top-48 max-sm:left-5 max-sm:w-11/12 max-sm:z-3 max-sm:text-xs max-sm:leading-relaxed max-sm:text-center max-sm:[&_.small-label]:text-xs max-sm:[&_.small-label]:tracking-widest max-sm:[&_.small-label]:leading-relaxed max-sm:[&_.small-label]:max-w-20 max-sm:[&_.small-label]:mb-2 max-sm:[&_.small-label]:hidden max-sm:[&_p]:m-0 max-sm:[&_p]:max-w-none max-xs:top-48">
     <span class="small-label text-xs font-medium tracking-widest leading-relaxed">
@@ -30,33 +39,44 @@ import { site } from '../config/site';
   </div>
   <div class="hero-copy hero-copy-right absolute z-3 text-sm leading-relaxed top-72 right-2 w-52 [&_.text-link]:mt-1 [&_.text-link]:text-xs [&_p]:mb-3.5 2xl:right-6 max-xl:top-64 max-xl:w-44 max-xl:text-xs max-lg:top-60 max-lg:w-32 max-lg:text-xs max-lg:right-0 max-sm:top-184 max-sm:right-0 max-sm:w-full max-sm:text-xs max-sm:leading-relaxed max-sm:z-3 max-sm:text-center max-sm:[&_.text-link]:gap-3 max-sm:[&_.text-link]:text-xs max-sm:[&_.text-link]:leading-normal max-sm:[&_.text-link]:min-h-10 max-sm:[&_.text-link_svg]:w-3.5 max-xs:top-175 max-sm:[&_p]:hidden">
     <p>
-      Composiciones únicas,
-      <br /> inspiradas en lo que sientes.
-      <br /> Creadas para recordar.
+      Más flores, historias
+      <br /> y pequeños instantes
+      <br /> en nuestro Instagram.
     </p>
     <a
       class="text-link gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
-      href="/personalizados"
+      href={site.instagram || '/personalizados'}
+      target={site.instagram ? '_blank' : undefined}
+      rel={site.instagram ? 'noopener noreferrer' : undefined}
     >
-      Crea tu arreglo <Icon name="arrow" size="sm" />
+      {site.instagram ? 'Síguenos en Instagram' : 'Crea tu arreglo'}
+      <Icon name={site.instagram ? 'instagram' : 'arrow'} size="sm" />
     </a>
   </div>
-  <img
-    class="hero-bouquet absolute z-2 left-1/2 top-36 -translate-x-1/2 w-140 h-184 object-contain pointer-events-none drop-shadow-bouquet 2xl:h-184 2xl:w-140 max-xl:w-125 max-xl:h-168 max-xl:top-32 max-lg:top-35 max-lg:w-116 max-lg:h-164 max-sm:w-full max-sm:max-w-100 max-sm:h-132 max-sm:top-50 max-sm:object-contain max-xs:h-124 max-xs:top-50"
-    src="/images/hero-frisson-sin-fondo.png"
-    srcset="/images/hero-frisson-sin-fondo-450.png 450w, /images/hero-frisson-sin-fondo.png 900w"
-    sizes="(max-width:24rem) 100vw, (max-width:40rem) 25rem, (max-width:64rem) 30rem, (max-width:80rem) 32rem, 35rem"
-    alt="Ramo de lirios rosados, una rosa roja y flores blancas, envuelto en yute con la tarjeta de Frisson"
-    width="900"
-    height="1200"
-    fetchpriority="high"
-  />
+  <div class="hero-bouquet absolute z-2 left-1/2 top-36 -translate-x-1/2 w-140 h-184 object-contain pointer-events-none drop-shadow-bouquet 2xl:h-184 2xl:w-140 max-xl:w-125 max-xl:h-168 max-xl:top-32 max-lg:top-35 max-lg:w-116 max-lg:h-164 max-sm:w-full max-sm:max-w-100 max-sm:h-132 max-sm:top-50 max-sm:object-contain max-xs:h-124 max-xs:top-50">
+    <div data-hero-parallax class="h-full">
+      <img
+        class="hero-bouquet-image h-full! w-full object-contain drop-shadow-bouquet"
+        src="/images/hero-frisson-sin-fondo.png"
+        srcset="/images/hero-frisson-sin-fondo-450.png 450w, /images/hero-frisson-sin-fondo.png 900w"
+        sizes="(max-width:24rem) 100vw, (max-width:40rem) 25rem, (max-width:64rem) 30rem, (max-width:80rem) 32rem, 35rem"
+        alt="Ramo de lirios rosados, una rosa roja y flores blancas, envuelto en yute con la tarjeta de Frisson"
+        width="900"
+        height="1200"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
   <a
-    class="button hero-cta py-3 px-6 border border-solid border-ink gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-paper bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap absolute left-1/2 top-205 -translate-x-1/2 z-4 shadow-soft [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-x-1/2 [&:hover]:-translate-y-0.5 max-xl:top-184 max-xl:text-xs max-lg:py-2.5 max-lg:px-5 max-lg:gap-2.5 max-lg:top-188 max-lg:text-xs max-lg:min-h-10 max-sm:px-4 max-sm:gap-3 max-sm:min-h-11 max-sm:text-xs max-sm:top-165 max-xs:top-156"
-    href="#colecciones"
+    class="button hero-cta py-3 px-6 border border-solid border-olive gap-3 inline-flex justify-center items-center min-h-12 rounded-full bg-olive bg-none text-paper text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap absolute inset-x-5 mx-auto w-fit top-205 z-4 shadow-soft [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-olive focus-visible:outline-offset-2 max-xl:top-184 max-xl:text-xs max-lg:py-2.5 max-lg:px-5 max-lg:gap-2.5 max-lg:top-188 max-lg:text-xs max-lg:min-h-10 max-sm:px-4 max-sm:gap-3 max-sm:min-h-11 max-sm:text-xs max-sm:top-165 max-xs:top-156"
+    href={contactUrl || '/contacto'}
+    target={contactUrl ? '_blank' : undefined}
+    rel={contactUrl ? 'noopener noreferrer' : undefined}
   >
-    Descubrir nuestros ramos <Icon name="arrow" size="sm" />
+    <Icon name={contactUrl ? 'whatsapp' : 'arrow'} size="sm" />
+    {contactUrl ? 'Escríbenos por WhatsApp' : 'Conversemos'}
   </a>
+  <h2 class="sr-only">Flores de autor y arreglos personalizados en Huancayo</h2>
   <div class="contents max-sm:mt-152 max-sm:grid max-sm:grid-cols-2 max-sm:gap-3.5">
     <div class="hero-features left-features gap-3.5 absolute z-3 w-52 grid left-2 top-116 2xl:w-56 2xl:left-6 2xl:top-120 max-xl:w-44 max-xl:top-108 max-lg:w-41 max-lg:left-0 max-lg:top-116 max-sm:gap-3.5 max-sm:static max-sm:w-auto">
       <FeatureCard
@@ -107,7 +127,7 @@ import { site } from '../config/site';
   </div>
 </section>
 <div
-  class="values-strip wrap mx-auto py-9 w-11/12 max-w-7xl flex items-center justify-between mt-11 border-t border-solid border-t-line border-b border-solid border-b-line font-serif text-2xl tracking-tight [&_i]:not-italic [&_i]:text-subtle [&_i]:text-2xl max-xl:w-11/12 max-xl:text-xl max-xl:mt-8 max-lg:py-6 max-lg:w-11/12 max-lg:flex-wrap max-lg:justify-center max-lg:gap-y-4 max-lg:gap-x-6 max-lg:text-lg max-lg:[&_i]:text-lg max-sm:py-6 max-sm:px-0 max-sm:w-11/12 max-sm:mt-5 max-sm:text-base max-sm:grid max-sm:grid-cols-[1fr_auto_1fr] max-sm:gap-y-3.5 max-sm:gap-x-1 max-sm:text-center max-sm:[&_i:nth-of-type(2)]:hidden max-sm:[&_i]:text-lg"
+  class="values-strip wrap mx-auto py-9 w-11/12 max-w-5xl flex items-center justify-between mt-11 border-t border-solid border-t-line border-b border-solid border-b-line font-serif text-2xl tracking-tight [&_i]:not-italic [&_i]:text-subtle [&_i]:text-2xl max-xl:w-11/12 max-xl:text-xl max-xl:mt-8 max-lg:py-6 max-lg:w-11/12 max-lg:flex-wrap max-lg:justify-center max-lg:gap-y-4 max-lg:gap-x-6 max-lg:text-lg max-lg:[&_i]:text-lg max-sm:py-6 max-sm:px-0 max-sm:w-11/12 max-sm:mt-5 max-sm:text-base max-sm:grid max-sm:grid-cols-[1fr_auto_1fr] max-sm:gap-y-3.5 max-sm:gap-x-1 max-sm:text-center max-sm:[&_i:nth-of-type(2)]:hidden max-sm:[&_i]:text-lg"
   aria-label="Nuestros valores"
 >
   <span>Inspiración francesa</span>

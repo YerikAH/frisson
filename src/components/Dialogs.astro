@@ -5,14 +5,14 @@ import Icon from './Icon.astro';
 <dialog
   id="cart-dialog"
   class="cart-dialog m-0 p-9 [--dialog-closed-transform:translateX(100%)] fixed top-0 right-0 bottom-0 left-auto w-116 max-h-dvh h-dvh max-w-full rounded-none overflow-auto max-sm:px-6 max-sm:[--dialog-closed-transform:translateY(100%)] max-sm:top-auto max-sm:right-0 max-sm:bottom-0 max-sm:left-0 max-sm:h-auto max-sm:min-h-[min(--spacing(104),88dvh)] max-sm:max-h-[88dvh] max-sm:max-w-full max-sm:pt-7 max-sm:pb-[calc(--spacing(7)+env(safe-area-inset-bottom))] max-sm:w-full max-sm:rounded-t-3xl max-sm:[&::before]:mx-auto max-sm:[&::before]:content-[''] max-sm:[&::before]:block max-sm:[&::before]:w-9 max-sm:[&::before]:h-1 max-sm:[&::before]:rounded-sm max-sm:[&::before]:bg-line max-sm:[&::before]:bg-none max-sm:[&::before]:-mt-3 max-sm:[&::before]:mb-6"
-  aria-label="Tu selección"
+  aria-labelledby="cart-dialog-title"
 >
   <div class="dialog-heading gap-5 flex justify-between items-start mb-6 [&_h2]:text-4xl [&_h2]:mb-0 [&_.eyebrow]:text-xs [&_.eyebrow]:mb-2 [&_.icon-button]:-mt-2 [&_.icon-button]:-mr-3 [&_.icon-button]:shrink-0 max-sm:[&_h2]:text-3xl max-sm:[&_.eyebrow]:text-xs">
     <div>
       <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
         UN GESTO POR FLORECER
       </p>
-      <h2>Tu selección</h2>
+      <h2 id="cart-dialog-title">Tu selección</h2>
     </div>
     <button
       class="icon-button inline-flex items-center justify-center w-12 h-12 rounded-full transition-colors duration-200 [&:hover]:bg-pale [&:hover]:bg-none max-sm:[&_svg]:w-6 max-sm:[&_svg]:h-6"
@@ -22,33 +22,36 @@ import Icon from './Icon.astro';
       <Icon name="close" />
     </button>
   </div>
-  <div id="cart-items"></div>
-  <div class="cart-footer mt-6 [&_p]:text-xs [&_p]:text-muted [&_>_.button]:flex [&_>_.button]:mb-5 [&_>_.text-link]:m-auto [&_>_.text-link]:block">
-    <p>
+  <div id="cart-items" class="pb-6"></div>
+  <div class="cart-footer mt-auto -mx-9 border-t border-solid border-line px-9 pt-6 [&_p]:text-xs [&_p]:text-muted max-sm:-mx-6 max-sm:px-6">
+    <div class="cart-actions flex flex-col items-stretch gap-3">
+      <a
+        href="/pedido"
+        class="button button-dark py-3 px-7 border border-solid border-olive gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-olive bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap text-paper [&:hover]:border-ink [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 max-sm:px-6 max-sm:min-h-11 max-sm:text-xs"
+        id="cart-continue"
+      >
+        <span data-cart-continue-label>Preparar mi solicitud</span>
+        <Icon name="arrow" size="sm" />
+      </a>
+      <button
+        class="text-link inline-flex items-center self-center min-h-10 text-xs font-medium leading-normal transition-colors duration-200 [&:hover]:text-olive"
+        data-close-dialog
+      >
+        Seguir explorando
+      </button>
+    </div>
+    <p class="mt-5 mb-0">
       El precio y la disponibilidad se confirman contigo. Cada pieza es única.
     </p>
-    <a
-      href="/pedido"
-      class="button button-dark py-3 px-7 border border-solid border-olive gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-olive bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap text-paper [&:hover]:border-ink [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 max-sm:px-6 max-sm:min-h-11 max-sm:text-xs"
-      id="cart-continue"
-    >
-      Preparar mi solicitud <Icon name="arrow" size="sm" />
-    </a>
-    <button
-      class="text-link gap-4 inline-flex items-center min-h-10 text-sm font-medium border-b border-solid border-b-line transition-all duration-200 [&:hover]:border-ink [&:hover]:gap-6"
-      data-close-dialog
-    >
-      Seguir explorando
-    </button>
   </div>
 </dialog>
 <dialog
   id="search-dialog"
-  class="search-dialog w-156"
-  aria-label="Buscar arreglos"
+  class="search-dialog w-156 rounded-none overflow-y-auto overscroll-contain [scrollbar-gutter:stable]"
+  aria-labelledby="search-dialog-title"
 >
   <div class="dialog-heading gap-5 flex justify-between items-start mb-6 [&_h2]:text-4xl [&_h2]:mb-0 [&_.eyebrow]:text-xs [&_.eyebrow]:mb-2 [&_.icon-button]:-mt-2 [&_.icon-button]:-mr-3 [&_.icon-button]:shrink-0 max-sm:[&_h2]:text-3xl max-sm:[&_.eyebrow]:text-xs">
-    <h2>¿Qué quieres regalar?</h2>
+    <h2 id="search-dialog-title">¿Qué quieres regalar?</h2>
     <button
       class="icon-button inline-flex items-center justify-center w-12 h-12 rounded-full transition-colors duration-200 [&:hover]:bg-pale [&:hover]:bg-none max-sm:[&_svg]:w-6 max-sm:[&_svg]:h-6"
       data-close-dialog
@@ -57,13 +60,14 @@ import Icon from './Icon.astro';
       <Icon name="close" />
     </button>
   </div>
-  <label class="search-label gap-4 flex items-center border-b border-solid border-b-ink [&_input]:border-0 [&_input]:border-solid [&_input]:border-current [&_input]:text-lg">
+  <label class="search-label gap-4 flex items-center border-b border-solid border-b-ink transition-colors duration-200 focus-within:border-olive [&_input]:border-0 [&_input]:border-solid [&_input]:border-current [&_input]:text-lg">
     <Icon name="search" />
     <input
       id="search-input"
       type="search"
       placeholder="Busca flores, ramos, maceteros…"
       aria-label="Buscar por nombre, flores o categoría"
+      aria-controls="search-results"
     />
   </label>
   <div id="search-results" aria-live="polite"></div>
@@ -71,14 +75,15 @@ import Icon from './Icon.astro';
 <dialog
   id="request-dialog"
   class="request-dialog w-175 [&_>_p]:text-sm [&_>_p]:text-muted [&_pre]:p-6 [&_pre]:whitespace-pre-wrap [&_pre]:wrap-anywhere [&_pre]:font-sans [&_pre]:text-xs [&_pre]:leading-loose [&_pre]:bg-pale/40 [&_pre]:bg-none [&_pre]:rounded-xs [&_pre]:max-h-[42dvh] [&_pre]:overflow-auto [&_#copy-status]:text-xs max-sm:[&_>_p]:text-xs max-sm:[&_pre]:p-4 max-sm:[&_pre]:text-xs"
-  aria-label="Resumen de tu solicitud"
+  aria-labelledby="request-dialog-title"
+  aria-describedby="request-dialog-description"
 >
   <div class="dialog-heading gap-5 flex justify-between items-start mb-6 [&_h2]:text-4xl [&_h2]:mb-0 [&_.eyebrow]:text-xs [&_.eyebrow]:mb-2 [&_.icon-button]:-mt-2 [&_.icon-button]:-mr-3 [&_.icon-button]:shrink-0 max-sm:[&_h2]:text-3xl max-sm:[&_.eyebrow]:text-xs">
     <div>
       <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
         LOS DETALLES DE TU EMOCIÓN
       </p>
-      <h2>Revisa tu solicitud</h2>
+      <h2 id="request-dialog-title">Revisa tu solicitud</h2>
     </div>
     <button
       class="icon-button inline-flex items-center justify-center w-12 h-12 rounded-full transition-colors duration-200 [&:hover]:bg-pale [&:hover]:bg-none max-sm:[&_svg]:w-6 max-sm:[&_svg]:h-6"
@@ -88,7 +93,7 @@ import Icon from './Icon.astro';
       <Icon name="close" />
     </button>
   </div>
-  <p>
+  <p id="request-dialog-description">
     Revisa los detalles antes de compartirlos. Tu pedido se confirmará al
     conversar con Frisson.
   </p>
@@ -152,3 +157,9 @@ import Icon from './Icon.astro';
   aria-live="polite"
   hidden
 ></div>
+<template id="ui-icon-arrow">
+  <Icon name="arrow" size="sm" />
+</template>
+<template id="ui-icon-up-right">
+  <Icon name="up-right" size="sm" />
+</template>

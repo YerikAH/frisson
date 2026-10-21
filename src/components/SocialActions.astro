@@ -1,0 +1,42 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config/site';
+import { whatsappUrl } from '../lib/orders';
+
+interface Props {
+  class?: string;
+}
+
+const contactUrl = whatsappUrl(
+  site.whatsapp,
+  'Hola, Frisson. Me gustaría conocer sus creaciones y hacer una consulta.',
+);
+---
+
+<div
+  class:list={[
+    'social-actions flex flex-wrap items-center justify-center gap-4',
+    Astro.props.class,
+  ]}
+>
+  {contactUrl && (
+    <a
+      href={contactUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="button button-dark inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-solid border-olive bg-olive px-7 py-3 text-xs font-medium leading-normal whitespace-nowrap text-paper transition duration-300 ease-out hover:-translate-y-0.5 hover:border-ink hover:bg-ink focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-olive focus-visible:outline-offset-2 motion-reduce:transition-none max-sm:min-h-11 max-sm:px-6"
+    >
+      <Icon name="whatsapp" size="sm" /> Escríbenos por WhatsApp
+    </a>
+  )}
+  {site.instagram && (
+    <a
+      href={site.instagram}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="button inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-solid border-olive bg-transparent px-7 py-3 text-xs font-medium leading-normal whitespace-nowrap text-olive transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-olive hover:text-paper focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-olive focus-visible:outline-offset-2 motion-reduce:transition-none max-sm:min-h-11 max-sm:px-6"
+    >
+      <Icon name="instagram" size="sm" /> Síguenos en Instagram
+    </a>
+  )}
+</div>

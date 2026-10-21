@@ -1,7 +1,8 @@
 ---
 import Icon from './Icon.astro';
+import type { ComponentProps } from 'astro/types';
 interface Props {
-  icon: string;
+  icon: ComponentProps<typeof Icon>['name'];
   title: string;
   text: string;
   class?: string;

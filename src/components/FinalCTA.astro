@@ -1,5 +1,5 @@
 ---
-import Icon from './Icon.astro';
+import SocialActions from './SocialActions.astro';
 ---
 
 <section class="final-cta px-6 relative isolate overflow-hidden text-center pt-25 pb-28 [&_>_div]:relative [&_>_div]:z-1 [&_h2]:text-7xl [&_h2]:leading-none [&_.eyebrow]:text-xs [&_p:not(.eyebrow)]:text-sm [&_p:not(.eyebrow)]:mb-7 max-sm:px-5 max-sm:pt-16 max-sm:pb-20 max-sm:[&_h2]:text-4xl max-sm:[&_.eyebrow]:text-xs max-sm:[&_.eyebrow]:tracking-widest max-sm:[&_p:not(.eyebrow)]:text-xs">
@@ -7,23 +7,20 @@ import Icon from './Icon.astro';
     class="cta-watermark absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-9xl leading-none tracking-tighter text-accent/40 whitespace-nowrap -z-1 max-sm:text-6xl max-sm:top-1/2"
     aria-hidden="true"
   >
-    FRISSON
+    frisson.
   </span>
   <div>
     <p class="eyebrow text-xs font-medium tracking-widest leading-relaxed mb-6 text-olive max-sm:text-xs max-sm:mb-4 max-sm:tracking-widest">
       HAY GESTOS QUE SE QUEDAN PARA SIEMPRE
     </p>
     <h2>
-      Regala una emoción.
+      <span data-cta-line>Regala una emoción.</span>
       <br />
-      <em>Crea un recuerdo.</em>
+      <em data-cta-line>Crea un recuerdo.</em>
     </h2>
-    <p>Una manera diferente de expresar lo que sientes.</p>
-    <a
-      href="/catalogo"
-      class="button button-dark py-3 px-7 border border-solid border-olive gap-6 inline-flex justify-center items-center min-h-12 rounded-full bg-olive bg-none text-xs font-medium leading-normal transition duration-300 ease-out whitespace-nowrap text-paper [&:hover]:border-ink [&:hover]:bg-ink [&:hover]:bg-none [&:hover]:text-paper [&:hover]:-translate-y-0.5 max-sm:px-6 max-sm:min-h-11 max-sm:text-xs"
-    >
-      Descubrir Frisson <Icon name="arrow" size="sm" />
-    </a>
+    <p>
+      Descubre nuestro universo en Instagram o cuéntanos tu idea por WhatsApp.
+    </p>
+    <SocialActions />
   </div>
 </section>

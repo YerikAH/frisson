@@ -7,15 +7,24 @@ const contactUrl = whatsappUrl(
   site.whatsapp,
   'Hola, Frisson. Me gustaría conocer sus creaciones y hacer una consulta.',
 );
+const contactLabel = contactUrl ? 'Contáctanos por WhatsApp' : 'Contáctanos';
 ---
 
 <a
-  class="whatsapp-float py-3.5 px-5 border border-solid border-white/15 gap-3 fixed right-7 bottom-[calc(--spacing(6)+env(safe-area-inset-bottom))] z-40 inline-flex items-center justify-center min-h-14 rounded-full bg-whatsapp bg-none text-white text-sm font-medium shadow-whatsapp transition duration-300 ease-floral [&_svg]:shrink-0 [&_svg]:stroke-1.5 [&:hover]:bg-whatsapp-hover [&:hover]:bg-none [&:hover]:-translate-y-1 [&:hover]:shadow-whatsapp-hover [&:focus-visible]:outline-2 [&:focus-visible]:outline-solid [&:focus-visible]:outline-olive [&:focus-visible]:outline-offset-1 [body:has(dialog[open])_&]:opacity-0 [body:has(dialog[open])_&]:translate-y-2 [body:has(dialog[open])_&]:pointer-events-none max-sm:p-0 max-sm:right-5 max-sm:bottom-[calc(--spacing(5)+env(safe-area-inset-bottom))] max-sm:w-14 max-sm:min-h-14 max-sm:[&_span]:hidden"
+  class="whatsapp-float group fixed right-7 bottom-[calc(--spacing(6)+env(safe-area-inset-bottom))] z-40 inline-flex size-14 items-center justify-center rounded-full border border-solid border-white/15 bg-whatsapp bg-none p-0 text-sm font-medium text-white shadow-whatsapp transition duration-300 ease-floral hover:-translate-y-1 hover:bg-whatsapp-hover hover:shadow-whatsapp-hover focus-visible:outline-2 focus-visible:outline-solid focus-visible:outline-olive focus-visible:outline-offset-2 motion-reduce:transition-none max-sm:right-5 max-sm:bottom-[calc(--spacing(5)+env(safe-area-inset-bottom))]"
   href={contactUrl || '/contacto'}
   target={contactUrl ? '_blank' : undefined}
   rel={contactUrl ? 'noopener noreferrer' : undefined}
-  aria-label="Conversar con Frisson por WhatsApp"
+  aria-label={contactLabel}
+  hidden
 >
   <Icon name="whatsapp" size="lg" />
-  <span>WhatsApp</span>
+  <span
+    class="pointer-events-none invisible absolute right-full top-1/2 -translate-y-1/2 translate-x-1 pr-3 opacity-0 transition-[opacity,translate,visibility] duration-200 ease-floral group-hover:pointer-events-auto group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:pointer-events-auto group-focus-visible:visible group-focus-visible:translate-x-0 group-focus-visible:opacity-100 motion-reduce:transition-none"
+    aria-hidden="true"
+  >
+    <span class="block whitespace-nowrap rounded-full border border-solid border-line bg-paper px-4 py-2.5 text-xs font-medium text-ink shadow-soft">
+      {contactLabel}
+    </span>
+  </span>
 </a>

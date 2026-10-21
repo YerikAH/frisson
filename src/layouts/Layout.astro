@@ -3,33 +3,60 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Dialogs from '../components/Dialogs.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { site } from '../config/site';
+import SEO from '../components/SEO.astro';
+import BrandIntro from '../components/BrandIntro.astro';
+import type { Product } from '../data/products';
 import '../styles/global.css';
 import themeSource from '../styles/global.css?raw';
 const themeColor = themeSource.match(/--color-paper:\s*([^;]+);/)?.[1]?.trim();
 interface Props {
   title?: string;
   description?: string;
-  image?: string;
   noindex?: boolean;
+  product?: Product;
 }
-const {
-  title = 'Frisson — Flores que te hacen sentir',
-  description = site.description,
-  image = '/images/instagram/lirios-rosas.webp',
-  noindex = false,
-} = Astro.props;
-const canonical = site.url
-  ? new URL(Astro.url.pathname, site.url).href
-  : undefined;
 ---
 
 <!doctype html>
-<html lang="es-PE">
+<html
+  lang="es-PE"
+  class="data-[brand-intro=active]:overflow-hidden data-[brand-intro=leaving]:overflow-hidden"
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Opt in before external styles load; navigation still loads a full HTML document. -->
+    <style is:inline>
+      @view-transition {
+        navigation: auto;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        @view-transition {
+          navigation: none;
+        }
+      }
+    </style>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="16x16 32x32 48x48"
+      href="/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      sizes="any"
+      href="/favicon.svg?v=botanical"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/images/brand/frisson-sprig.png" as="image" />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-light-logo.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <link
       rel="preload"
       href="/fonts/bodoni-regular.woff2"
@@ -45,38 +72,28 @@ const canonical = site.url
       crossorigin
     />
     <meta name="theme-color" content={themeColor} />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-    {canonical && <link rel="canonical" href={canonical} />}
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_PE" />
-    <meta property="og:site_name" content="Frisson" />
-    {canonical && <meta property="og:url" content={canonical} />}
-    <meta
-      property="og:image"
-      content={site.url ? new URL(image, site.url).href : image}
-    />
-    <meta property="og:image:alt" content="El universo floral de Frisson" />
-    <meta name="twitter:card" content="summary_large_image" />
-    {noindex && <meta name="robots" content="noindex,follow" />}
+    <SEO {...Astro.props} />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body id="inicio">
-    <a
-      href="#contenido"
-      class="skip-link py-3 px-5 absolute left-4 -top-24 z-100 bg-olive bg-none text-white [&:focus]:top-3"
-    >
-      Saltar al contenido
-    </a>
-    <Header />
-    <main id="contenido">
-      <slot />
-    </main>
-    <Footer />
-    <WhatsAppButton />
-    <Dialogs />
+    <BrandIntro />
+    <div id="site-shell">
+      <a
+        href="#contenido"
+        class="skip-link py-3 px-5 absolute left-4 -top-24 z-100 bg-olive bg-none text-white [&:focus]:top-3"
+      >
+        Saltar al contenido
+      </a>
+      <Header />
+      <main id="contenido" tabindex="-1">
+        <slot />
+      </main>
+      <Footer />
+      <aside aria-label="Contacto por WhatsApp">
+        <WhatsAppButton />
+      </aside>
+      <Dialogs />
+    </div>
     <script src="../scripts/site.ts"></script>
   </body>
 </html>

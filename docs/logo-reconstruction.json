@@ -1,0 +1,27 @@
+{
+  "tool": "ImageGen, herramienta integrada",
+  "useCase": "background-extraction / logo-brand",
+  "reference": "Fotografía del logo impreso proporcionada por el usuario (20 de octubre de 2026)",
+  "output": "public/images/brand/frisson-sprig.png",
+  "component": "src/components/BrandLogo.astro",
+  "transparentBackground": true,
+  "imageSize": {
+    "width": 1024,
+    "height": 1536
+  },
+  "typography": "Cormorant Garamond Light, peso real 300, con texto HTML nítido: frisson. / floristería.",
+  "font": {
+    "file": "public/fonts/cormorant-garamond-light-logo.woff2",
+    "source": "Google Fonts, Cormorant Garamond; subconjunto para frisson.floristería",
+    "metadata": "https://github.com/google/fonts/blob/main/ofl/cormorantgaramond/METADATA.pb",
+    "license": "public/fonts/Cormorant-Garamond-OFL.txt",
+    "weight": 300
+  },
+  "separator": "Dos líneas finas y un rombo central, entre frisson. y floristería, con utilidades nativas de Tailwind.",
+  "variants": {
+    "compact": "Header: rama ampliada, nombre, separador y floristería en vertical al inicio (h-32/h-28). Al hacer scroll la rama desaparece suavemente y el header se compacta (h-18/h-16).",
+    "stacked": "Pie de página: la misma composición vertical a mayor tamaño."
+  },
+  "note": "Reconstrucción visual para la web a partir de la fotografía. La máscara alfa toma el color del tema, sin fondo de papel.",
+  "prompt": "Use case: background-extraction / logo-brand. Edit target and visual reference: the attached low-resolution photograph of the printed Frisson logo. Reconstruct ONLY the delicate botanical sprig printed above the word frisson.; remove ALL lettering, card, paper texture, flowers, shadows and surrounding photograph. Preserve the botanical identity in the reference: an upright thin fine-line branching wildflower sprig, several slender natural stems rising from a narrow common base, tiny oval leaves and little seed buds on fine side branches, airy and asymmetrical, elegant herbarium ink drawing. Correct the photograph's perspective so the sprig is perfectly upright and seen flat from the front. Crisp clean monochrome dark ink linework with consistent delicate strokes, no fuzzy photo texture. This is a logo ornament, not a realistic plant or bouquet; do not add large flowers, a vase, ribbons, circles or a frame. NO TEXT at all. Portrait 2:3 composition, the entire sprig centered and filling about 90% of the height with a small transparent margin on all sides. Genuine transparent alpha background; not white, not beige, not checkerboard. Output a single isolated logo sprig on transparency, high resolution suitable as a website brand mark."
+}
